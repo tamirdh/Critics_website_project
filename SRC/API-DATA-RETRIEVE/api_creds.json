@@ -1,0 +1,17 @@
+{  "new_york_times": {
+    "key": "PSDZe40ehm3gEKlrzdMT75uMdKRqVOMr",
+    "secret": "DQMkhvqJU5OleaLH",
+    "base url": "https://api.nytimes.com/svc/movies/v2"
+  },
+  "tmdb": {
+      "token": "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMjkxMzQwNjg2NDBmNzljNjJlZmNkMTA3YjM4OGRlMSIsInN1YiI6IjVmZWM2YzIyOTQ1ZDM2MDAzZDA3Mjg0MSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.AVbBoTAdq1QZ9e5ILE3JKUP4K_5Mss1ndW0qtU4cG80",
+      "base url": "https://api.themoviedb.org/3"
+  },
+  "our_db": {
+    "host": "127.0.0.1",
+    "port": "3305",
+    "username": "DbMysql16",
+    "password": "DbMysql16",
+    "db name": "DbMysql16"
+  }
+}
