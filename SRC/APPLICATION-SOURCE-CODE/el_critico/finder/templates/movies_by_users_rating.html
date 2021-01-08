@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Here are the reviews for movies that are popular according to the audience<br>
+Found {{ reviews_list |length }} reviews <br>
+<ul>
+{% for review in reviews_list %}
+<li>
+ Movie:{{ review.0 }}<br>Average score: {{ review.1 }}<br>review summary: {{ review.2 }}<br>
+    <a href={{ review.3 }}>Original review</a>
+    <br>
+</li>
+    {% endfor %}
+</ul>
+</body>
+</html>
