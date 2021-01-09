@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Here are some movies statistics based on user rating (per category)<br>
+<ol>
+{% for review in reviews_list %}
+<li>
+ Category:{{ review.2 }}<br>Average user score:{{ review.0 }}<br>Average number of votes:{{ review.1 }}
+    <br>
+</li>
+    {% endfor %}
+</ol>
+</body>
+</html>

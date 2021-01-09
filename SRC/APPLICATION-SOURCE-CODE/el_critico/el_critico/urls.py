@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.conf.urls.static import static
-from django.conf import settings
 from finder.views import HomePage
-import django.views.defaults
+
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', HomePage.as_view()),
-    path('finder/', include('finder.urls')),
-]
+                  path('admin/', admin.site.urls),
+                  path('', HomePage.as_view()),
+                  path('finder/', include('finder.urls')),
+              ]
+handler500 = 'finder.views.error_500_view'
+handler404 = 'finder.views.error_404_view'

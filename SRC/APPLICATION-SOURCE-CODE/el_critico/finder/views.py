@@ -5,6 +5,17 @@ from django.db import connection
 
 
 # Create your views here.
+
+def error_500_view(request):
+    print("Internal server error handler")
+    return render(request, '500.html', status=500)
+
+
+def error_404_view(request, exception):
+    print("404 handler")
+    return render(request, '404.html', status=404)
+
+
 class HomePage(View):
     template_name = 'index.html'
 
@@ -12,7 +23,7 @@ class HomePage(View):
         return render(request, self.template_name)
 
 
-# query 1
+# query 1- reviews by critics
 class ReviewsByCritic(ListView):
     template_name = 'reviews_by_critic.html'
     query = "select Movie.title as Movie_title, Person.name as critic, summary, link from Person join Review on" \
@@ -24,23 +35,27 @@ class ReviewsByCritic(ListView):
             new_critic_name = "%{}%".format(critic_name)
             cursor.execute(self.query, (new_critic_name,))
             rows = cursor.fetchall()
+            if not rows:
+                return render(request, 'no_results.html')
         return render(request, self.template_name, {"reviews_list": rows, "critic": critic_name})
 
 
-# query 2
+# query 2- users rating
 class PopularMoviesUsers(ListView):
     template_name = 'movies_by_users_rating.html'
     query = "SELECT Movie.title, Movie.vote_avg, summary, link FROM Review JOIN Movie ON Movie.ID = Review.movie_id" \
-            " order by Movie.vote_avg desc;"
+            " order by Movie.vote_avg desc"
 
     def get(self, request, *args, **kwargs):
         with connection.cursor() as cursor:
             cursor.execute(self.query)
             rows = cursor.fetchall()
+            if not rows:
+                return render(request, 'no_results.html')
         return render(request, self.template_name, {"reviews_list": rows})
 
 
-# query 3
+# query 3- critics picks
 class PopularMoviesCritics(ListView):
     template_name = 'movies_by_critics_picks.html'
     query = "SELECT Movie.title AS Movie_title, summary, link FROM Review JOIN Movie ON Movie.ID = Review.movie_id" \
@@ -50,10 +65,12 @@ class PopularMoviesCritics(ListView):
         with connection.cursor() as cursor:
             cursor.execute(self.query)
             rows = cursor.fetchall()
+            if not rows:
+                return render(request, 'no_results.html')
         return render(request, self.template_name, {"reviews_list": rows})
 
 
-# query 4- full text
+# query 4- full text, similar phrase
 class KeyWordReview(ListView):
     template_name = 'movies_by_term.html'
     query = "SELECT Movie.title AS Movie_title, summary, link FROM Review JOIN Movie ON Movie.ID = Review.movie_id" \
@@ -64,4 +81,52 @@ class KeyWordReview(ListView):
             term = kwargs['phrase']
             cursor.execute(self.query, (term,))
             rows = cursor.fetchall()
+            if not rows:
+                return render(request, 'no_results.html')
         return render(request, self.template_name, {"reviews_list": rows, "phrase": term})
+
+
+# query 5- pick statistics by critic
+class MoviesPicked(ListView):
+    template_name = 'movies_picked_by_critic.html'
+    query = "SELECT Person.name, count(*), SUM(critics_pick) from Person join Review on Person.ID = Review.critic_id" \
+            " where Person.name=%s group by critic_id "
+
+    def get(self, request, *args, **kwargs):
+        with connection.cursor() as cursor:
+            critic = kwargs['critic']
+            cursor.execute(self.query, (critic,))
+            row = cursor.fetchone()
+            if not row:
+                return render(request, 'no_results.html')
+        return render(request, self.template_name, {"critic_name": row[0], "count": row[2], "total": row[1]})
+
+
+# query 6 picks by genres
+class MoviesPickedGenre(ListView):
+    template_name = 'movies_by_critics_picks.html'
+    query = "SELECT Movie.title AS Movie_title, summary, link FROM Review JOIN Movie ON Movie.ID = Review.movie_id " \
+            "JOIN Genre on Genre.ID = Movie.category_id WHERE critics_pick = 1 AND category_name=%s"
+
+    def get(self, request, *args, **kwargs):
+        category_name = kwargs["genre"]
+        with connection.cursor() as cursor:
+            cursor.execute(self.query, (category_name,))
+            rows = cursor.fetchall()
+            if not rows:
+                return render(request, 'no_results.html')
+        return render(request, self.template_name, {"reviews_list": rows})
+
+
+# query 7 user score by genre
+class GenreUsersStats(ListView):
+    template_name = 'user_stats.html'
+    query = "SELECT AVG(Movie.vote_avg) as vote, AVG(Movie.vote_count), category_name FROM Movie join Genre ON Movie.category_id = Genre.ID group by Movie.category_id order by vote  desc"
+
+    def get(self, request, *args, **kwargs):
+        with connection.cursor() as cursor:
+            cursor.execute(self.query)
+            rows = cursor.fetchall()
+            if not rows:
+                return render(request, 'no_results.html')
+        return render(request, self.template_name, {"reviews_list": rows})
