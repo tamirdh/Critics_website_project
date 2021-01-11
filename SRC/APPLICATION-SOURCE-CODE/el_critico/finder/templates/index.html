@@ -1,13 +1,125 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Welcome</title>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-</head>
-<body>
-This is a place holder for FE integration <br>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Potta+One&display=swap" rel="stylesheet">
 
-Guy and Ido will replace this
-</body>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Custom CSS -->
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
+
+    <title>TIGI Reviews DB</title>
+  </head>
+
+  <body>
+    <div class="container-fluid mx-0 px-0">
+      <div class="hey d-flex justify-content-center align-items-center">
+        <p class="h1" id="sitename">TIGI</p>
+      </div>
+      <div class="hey d-flex justify-content-center align-items-center">
+        <p class = "h2" id="slogen">The best place to get your movie reviews</p>
+      </div>
+    </div>
+
+
+    <nav id="mainNavbar" class="navbar navbar-dark navbar-expand-md py-0 sticky-top">
+      <a href="#" class="navbar-brand">HOME</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navLinks" aria-label="toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id= "navLinks" class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a href="" class="nav-link">SUBMIT REVIEW</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'finder_critics' %}" class="nav-link">TOP MOVIES</a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">CONTACT US</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="container-fluid px-0">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div id="headingGroup" class="text-white text-center d-none d-lg-block mt-5">
+              <img id="popcorn" src="data:image/svg+xml;base64,PHN2ZyBpZD0iRmlsbGVkIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHdpZHRoPSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTM0NCAxMDRjLS4zNCAwLS42OC4wMS0xLjAyLjAyYTMxLjY0OSAzMS42NDkgMCAwIDAgMS4wMi04LjAyIDMyLjAwOCAzMi4wMDggMCAwIDAgLTYyLjgyLTguNjYgNDguMTE3IDQ4LjExNyAwIDAgMCAtNDkuMTktMjIuNjhjLjAxLS4yMi4wMS0uNDQuMDEtLjY2YTQwIDQwIDAgMCAwIC03OS4zNi03LjEyIDQwLjAwNiA0MC4wMDYgMCAwIDAgLTcyLjQgMjcuNTUyIDMyIDMyIDAgMSAwIC0zMi4yNCA1NS4yNzZ2NjAuMjkyaDMxMnYtNTQuMTJhMjMuOTk0IDIzLjk5NCAwIDAgMCAtMTYtNDEuODh6IiBmaWxsPSIjZmRlNTc1Ii8+PHBhdGggZD0ibTM0NCA0MjRoLTI4OGwtMTYtMjQ4aDMyMHoiIGZpbGw9IiMyYjcwYTgiLz48cGF0aCBkPSJtMzYwIDE3Ni0xNiAyNDhoLTI0MHYtMjQ4eiIgZmlsbD0ibm9uZSIvPjxnIGZpbGw9IiNjZTM1MzYiPjxwYXRoIGQ9Im0xMDQgMTc2djI0OGgtNDhsLTE2LTI0OHoiLz48cGF0aCBkPSJtMTY4IDE3Nmg2NHYyNDhoLTY0eiIvPjxwYXRoIGQ9Im0zNDQgNDI0aC00OHYtMjQ4aDY0eiIvPjwvZz48cGF0aCBkPSJtNDAgMTY4aDMyMGExNiAxNiAwIDAgMSAxNiAxNnYxNmEwIDAgMCAwIDEgMCAwaC0zNTJhMCAwIDAgMCAxIDAgMHYtMTZhMTYgMTYgMCAwIDEgMTYtMTZ6IiBmaWxsPSIjYTUyYjJiIi8+PHBhdGggZD0ibTQ4OCAzNzZ2OTZhMTYgMTYgMCAwIDEgLTE2IDE2aC0xMzZsLTE2LTMyLTE2IDMyaC0xMzZhMTYgMTYgMCAwIDEgLTE2LTE2di05NmExNiAxNiAwIDAgMSAxNi0xNmgxMzZsMTYgMzIgMTYtMzJoMTM2YTE2IDE2IDAgMCAxIDE2IDE2eiIgZmlsbD0iI2ZhZThkOCIvPjxwYXRoIGQ9Im0xODQgMzkyaDk2djY0aC05NnoiIGZpbGw9IiMyYjcwYTgiLz48cGF0aCBkPSJtMzYwIDM5Mmg5NnY2NGgtOTZ6IiBmaWxsPSIjY2UzNTM2Ii8+PHBhdGggZD0ibTI0IDIwOGg4LjU1MWwxNS40NyAyMTYuNTdhOCA4IDAgMCAwIDcuOTc5IDcuNDNoODh2NDBhMjQuMDI4IDI0LjAyOCAwIDAgMCAyNCAyNGgxMzZhOCA4IDAgMCAwIDcuMTU1LTQuNDIybDguODQ1LTE3LjY4OSA4Ljg0NSAxNy42ODlhOCA4IDAgMCAwIDcuMTU1IDQuNDIyaDEzNmEyNC4wMjggMjQuMDI4IDAgMCAwIDI0LTI0di05NmEyNC4wMjggMjQuMDI4IDAgMCAwIC0yNC0yNGgtMTE1LjMzN2w5LjI4OC0xNDRoMTAuMDQ5YTggOCAwIDAgMCA4LTh2LTE2YTI0LjAzOSAyNC4wMzkgMCAwIDAgLTE2LTIyLjYyNHYtMTIuMjE5YTMyIDMyIDAgMCAwIC0xNi4wMTMtNTIuMTQ4cS4wMTMtLjUwNC4wMTMtMS4wMDlhNDAgNDAgMCAwIDAgLTcyLjM1Mi0yMy41MTMgNTYuNDMgNTYuNDMgMCAwIDAgLTQwLjMxNC0xNi40ODcgNDguMDIxIDQ4LjAyMSAwIDAgMCAtOTAuMDIzLTE0IDQ3Ljk4OCA0Ny45ODggMCAwIDAgLTc2Ljc5IDMwLjkxNSAzOS45OTMgMzkuOTkzIDAgMCAwIC0zMi41MjEgNzEuMDczdjE2LjAxMmEyNC4wMjggMjQuMDI4IDAgMCAwIC0yNCAyNHYxNmE4IDggMCAwIDAgOCA4em0yNC41OTIgMGg0Ny40MDh2MjA4aC0zMi41NTF6bTYzLjQwOCAyMDh2LTIwOGg0OHYxNDUuMzc2YTI0LjAzOSAyNC4wMzkgMCAwIDAgLTE2IDIyLjYyNHY0MHptMTI4LTY0di0xNDRoNDh2MTQ0em0tMTYgMGgtNDh2LTE0NGg0OHptMjU2IDI0djk2YTguMDA5IDguMDA5IDAgMCAxIC04IDhoLTEzMS4wNTZsLTEzLjc4OS0yNy41NzhhOCA4IDAgMCAwIC0xNC4zMSAwbC0xMy43ODkgMjcuNTc4aC0xMzEuMDU2YTguMDA5IDguMDA5IDAgMCAxIC04LTh2LTk2YTguMDA5IDguMDA5IDAgMCAxIDgtOGgxMzEuMDU2bDEzLjc4OSAyNy41NzhhOCA4IDAgMCAwIDE0LjMxIDBsMTMuNzg5LTI3LjU3OGgxMzEuMDU2YTguMDA5IDguMDA5IDAgMCAxIDggOHptLTEzOS4zNzEtMjRoLTQuNjI5YTggOCAwIDAgMCAtNy4xNTUgNC40MjJsLTguODQ1IDE3LjY4OS04Ljg0NS0xNy42ODlhOCA4IDAgMCAwIC03LjE1NS00LjQyMnYtMTQ0aDQ1LjkxN3ptLTI4OC42MTctMjE5LjIxMmEyNCAyNCAwIDEgMSAyNC4xNjEtNDEuNDY5IDggOCAwIDAgMCAxMi4wMTgtNy43NjcgMzIuNTc3IDMyLjU3NyAwIDAgMSAtLjE5MS0zLjU1MiAzMiAzMiAwIDAgMSA1OC4xMTUtMTguNDkxIDggOCAwIDAgMCAxNC40LTMuMjE3IDMyIDMyIDAgMCAxIDYzLjQ4NSA1LjcwOHYuMzA2YTggOCAwIDAgMCA5LjMyMiA4LjI0MyA0MC4zMjYgNDAuMzI2IDAgMCAxIDYuNjc4LS41NDkgMzkuNjkzIDM5LjY5MyAwIDAgMSAzNC4zMTggMTkuNDUzIDggOCAwIDAgMCAxNC41NjQtMS45NSAyNC4wMDggMjQuMDA4IDAgMCAxIDQ3LjExOCA2LjQ5NyAyMy42ODEgMjMuNjgxIDAgMCAxIC0uNzU5IDYgOCA4IDAgMCAwIDcuOTgxIDEwLjAyMmMuMjU5LS4wMDguNTE4LS4wMTcuNzc4LS4wMTdhMTUuOTk0IDE1Ljk5NCAwIDAgMSAxMC42NjggMjcuOTE2IDggOCAwIDAgMCAtMi42NjggNS45NTl2MTQuMTJoLTI5NnYtMjAuMjlhOCA4IDAgMCAwIC0zLjk4OC02LjkyMnptLTIwLjAxMiA1MS4yMTJhOC4wMDkgOC4wMDkgMCAwIDEgOC04aDMyMGE4LjAwOSA4LjAwOSAwIDAgMSA4IDh2OGgtMzM2eiIvPjxwYXRoIGQ9Im0yODAgMzg0aC05NmE4IDggMCAwIDAgLTggOHY2NGE4IDggMCAwIDAgOCA4aDk2YTggOCAwIDAgMCA4LTh2LTY0YTggOCAwIDAgMCAtOC04em0tOCA2NGgtODB2LTQ4aDgweiIvPjxwYXRoIGQ9Im0zNjAgNDY0aDk2YTggOCAwIDAgMCA4LTh2LTY0YTggOCAwIDAgMCAtOC04aC05NmE4IDggMCAwIDAgLTggOHY2NGE4IDggMCAwIDAgOCA4em04LTY0aDgwdjQ4aC04MHoiLz48cGF0aCBkPSJtMjI0IDEzNmEzMi4wMzYgMzIuMDM2IDAgMCAwIDMyLTMyIDggOCAwIDAgMCAtMTYgMCAxNiAxNiAwIDAgMSAtMzIgMCA4IDggMCAwIDAgLTE2IDAgMzIuMDM2IDMyLjAzNiAwIDAgMCAzMiAzMnoiLz48cGF0aCBkPSJtMTI4IDEyOGE4IDggMCAwIDAgMCAxNiAzMiAzMiAwIDAgMCAwLTY0IDggOCAwIDAgMCAwIDE2IDE2IDE2IDAgMCAxIDAgMzJ6Ii8+PC9zdmc+" />
+              <h1 class="display-2"><span>#</span>Welcome to the best place to find reviews for movies<span>!</span></h1>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <img class="img-fluid" src="imgs/red-chairs.jpg" alt="">
+        </div>
+      </div>
+    </section>
+
+    <section class="container-fluid px-0">
+      <div class="row align-items-center content">
+        <div class="col-md-6 order-2 order-md-1">
+          <img class="img-fluid" src="imgs/red-chairs.jpg" alt="">
+        </div>
+        <div class="col-md-6 text-center order-1 order-md-2">
+          <div class="row justify-content-center">
+            <div class="col-10 col-lg-8 blurb mb-5 mb-md-0">
+              <img id="popcorn" src="data:image/svg+xml;base64,PHN2ZyBpZD0iRmlsbGVkIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHdpZHRoPSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTM0NCAxMDRjLS4zNCAwLS42OC4wMS0xLjAyLjAyYTMxLjY0OSAzMS42NDkgMCAwIDAgMS4wMi04LjAyIDMyLjAwOCAzMi4wMDggMCAwIDAgLTYyLjgyLTguNjYgNDguMTE3IDQ4LjExNyAwIDAgMCAtNDkuMTktMjIuNjhjLjAxLS4yMi4wMS0uNDQuMDEtLjY2YTQwIDQwIDAgMCAwIC03OS4zNi03LjEyIDQwLjAwNiA0MC4wMDYgMCAwIDAgLTcyLjQgMjcuNTUyIDMyIDMyIDAgMSAwIC0zMi4yNCA1NS4yNzZ2NjAuMjkyaDMxMnYtNTQuMTJhMjMuOTk0IDIzLjk5NCAwIDAgMCAtMTYtNDEuODh6IiBmaWxsPSIjZmRlNTc1Ii8+PHBhdGggZD0ibTM0NCA0MjRoLTI4OGwtMTYtMjQ4aDMyMHoiIGZpbGw9IiMyYjcwYTgiLz48cGF0aCBkPSJtMzYwIDE3Ni0xNiAyNDhoLTI0MHYtMjQ4eiIgZmlsbD0ibm9uZSIvPjxnIGZpbGw9IiNjZTM1MzYiPjxwYXRoIGQ9Im0xMDQgMTc2djI0OGgtNDhsLTE2LTI0OHoiLz48cGF0aCBkPSJtMTY4IDE3Nmg2NHYyNDhoLTY0eiIvPjxwYXRoIGQ9Im0zNDQgNDI0aC00OHYtMjQ4aDY0eiIvPjwvZz48cGF0aCBkPSJtNDAgMTY4aDMyMGExNiAxNiAwIDAgMSAxNiAxNnYxNmEwIDAgMCAwIDEgMCAwaC0zNTJhMCAwIDAgMCAxIDAgMHYtMTZhMTYgMTYgMCAwIDEgMTYtMTZ6IiBmaWxsPSIjYTUyYjJiIi8+PHBhdGggZD0ibTQ4OCAzNzZ2OTZhMTYgMTYgMCAwIDEgLTE2IDE2aC0xMzZsLTE2LTMyLTE2IDMyaC0xMzZhMTYgMTYgMCAwIDEgLTE2LTE2di05NmExNiAxNiAwIDAgMSAxNi0xNmgxMzZsMTYgMzIgMTYtMzJoMTM2YTE2IDE2IDAgMCAxIDE2IDE2eiIgZmlsbD0iI2ZhZThkOCIvPjxwYXRoIGQ9Im0xODQgMzkyaDk2djY0aC05NnoiIGZpbGw9IiMyYjcwYTgiLz48cGF0aCBkPSJtMzYwIDM5Mmg5NnY2NGgtOTZ6IiBmaWxsPSIjY2UzNTM2Ii8+PHBhdGggZD0ibTI0IDIwOGg4LjU1MWwxNS40NyAyMTYuNTdhOCA4IDAgMCAwIDcuOTc5IDcuNDNoODh2NDBhMjQuMDI4IDI0LjAyOCAwIDAgMCAyNCAyNGgxMzZhOCA4IDAgMCAwIDcuMTU1LTQuNDIybDguODQ1LTE3LjY4OSA4Ljg0NSAxNy42ODlhOCA4IDAgMCAwIDcuMTU1IDQuNDIyaDEzNmEyNC4wMjggMjQuMDI4IDAgMCAwIDI0LTI0di05NmEyNC4wMjggMjQuMDI4IDAgMCAwIC0yNC0yNGgtMTE1LjMzN2w5LjI4OC0xNDRoMTAuMDQ5YTggOCAwIDAgMCA4LTh2LTE2YTI0LjAzOSAyNC4wMzkgMCAwIDAgLTE2LTIyLjYyNHYtMTIuMjE5YTMyIDMyIDAgMCAwIC0xNi4wMTMtNTIuMTQ4cS4wMTMtLjUwNC4wMTMtMS4wMDlhNDAgNDAgMCAwIDAgLTcyLjM1Mi0yMy41MTMgNTYuNDMgNTYuNDMgMCAwIDAgLTQwLjMxNC0xNi40ODcgNDguMDIxIDQ4LjAyMSAwIDAgMCAtOTAuMDIzLTE0IDQ3Ljk4OCA0Ny45ODggMCAwIDAgLTc2Ljc5IDMwLjkxNSAzOS45OTMgMzkuOTkzIDAgMCAwIC0zMi41MjEgNzEuMDczdjE2LjAxMmEyNC4wMjggMjQuMDI4IDAgMCAwIC0yNCAyNHYxNmE4IDggMCAwIDAgOCA4em0yNC41OTIgMGg0Ny40MDh2MjA4aC0zMi41NTF6bTYzLjQwOCAyMDh2LTIwOGg0OHYxNDUuMzc2YTI0LjAzOSAyNC4wMzkgMCAwIDAgLTE2IDIyLjYyNHY0MHptMTI4LTY0di0xNDRoNDh2MTQ0em0tMTYgMGgtNDh2LTE0NGg0OHptMjU2IDI0djk2YTguMDA5IDguMDA5IDAgMCAxIC04IDhoLTEzMS4wNTZsLTEzLjc4OS0yNy41NzhhOCA4IDAgMCAwIC0xNC4zMSAwbC0xMy43ODkgMjcuNTc4aC0xMzEuMDU2YTguMDA5IDguMDA5IDAgMCAxIC04LTh2LTk2YTguMDA5IDguMDA5IDAgMCAxIDgtOGgxMzEuMDU2bDEzLjc4OSAyNy41NzhhOCA4IDAgMCAwIDE0LjMxIDBsMTMuNzg5LTI3LjU3OGgxMzEuMDU2YTguMDA5IDguMDA5IDAgMCAxIDggOHptLTEzOS4zNzEtMjRoLTQuNjI5YTggOCAwIDAgMCAtNy4xNTUgNC40MjJsLTguODQ1IDE3LjY4OS04Ljg0NS0xNy42ODlhOCA4IDAgMCAwIC03LjE1NS00LjQyMnYtMTQ0aDQ1LjkxN3ptLTI4OC42MTctMjE5LjIxMmEyNCAyNCAwIDEgMSAyNC4xNjEtNDEuNDY5IDggOCAwIDAgMCAxMi4wMTgtNy43NjcgMzIuNTc3IDMyLjU3NyAwIDAgMSAtLjE5MS0zLjU1MiAzMiAzMiAwIDAgMSA1OC4xMTUtMTguNDkxIDggOCAwIDAgMCAxNC40LTMuMjE3IDMyIDMyIDAgMCAxIDYzLjQ4NSA1LjcwOHYuMzA2YTggOCAwIDAgMCA5LjMyMiA4LjI0MyA0MC4zMjYgNDAuMzI2IDAgMCAxIDYuNjc4LS41NDkgMzkuNjkzIDM5LjY5MyAwIDAgMSAzNC4zMTggMTkuNDUzIDggOCAwIDAgMCAxNC41NjQtMS45NSAyNC4wMDggMjQuMDA4IDAgMCAxIDQ3LjExOCA2LjQ5NyAyMy42ODEgMjMuNjgxIDAgMCAxIC0uNzU5IDYgOCA4IDAgMCAwIDcuOTgxIDEwLjAyMmMuMjU5LS4wMDguNTE4LS4wMTcuNzc4LS4wMTdhMTUuOTk0IDE1Ljk5NCAwIDAgMSAxMC42NjggMjcuOTE2IDggOCAwIDAgMCAtMi42NjggNS45NTl2MTQuMTJoLTI5NnYtMjAuMjlhOCA4IDAgMCAwIC0zLjk4OC02LjkyMnptLTIwLjAxMiA1MS4yMTJhOC4wMDkgOC4wMDkgMCAwIDEgOC04aDMyMGE4LjAwOSA4LjAwOSAwIDAgMSA4IDh2OGgtMzM2eiIvPjxwYXRoIGQ9Im0yODAgMzg0aC05NmE4IDggMCAwIDAgLTggOHY2NGE4IDggMCAwIDAgOCA4aDk2YTggOCAwIDAgMCA4LTh2LTY0YTggOCAwIDAgMCAtOC04em0tOCA2NGgtODB2LTQ4aDgweiIvPjxwYXRoIGQ9Im0zNjAgNDY0aDk2YTggOCAwIDAgMCA4LTh2LTY0YTggOCAwIDAgMCAtOC04aC05NmE4IDggMCAwIDAgLTggOHY2NGE4IDggMCAwIDAgOCA4em04LTY0aDgwdjQ4aC04MHoiLz48cGF0aCBkPSJtMjI0IDEzNmEzMi4wMzYgMzIuMDM2IDAgMCAwIDMyLTMyIDggOCAwIDAgMCAtMTYgMCAxNiAxNiAwIDAgMSAtMzIgMCA4IDggMCAwIDAgLTE2IDAgMzIuMDM2IDMyLjAzNiAwIDAgMCAzMiAzMnoiLz48cGF0aCBkPSJtMTI4IDEyOGE4IDggMCAwIDAgMCAxNiAzMiAzMiAwIDAgMCAwLTY0IDggOCAwIDAgMCAwIDE2IDE2IDE2IDAgMCAxIDAgMzJ6Ii8+PC9zdmc+" />
+              <h1 class="display-2"><span>#</span>Welcome to the best place to find reviews for movies<span>!</span></h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row align-items-center content">
+          <div class="col-md-6 text-center">
+            <div class="row justify-content-center">
+              <div class="col-10 col-lg-8 blurb mb-5 mb-md-0">
+                  <h2>MUSEUM OF CANDY</h2>
+                  <img class="d-none d-lg-inline" src="imgs/lolli_icon.png" alt="">
+                  <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, iste molestiae beatae, maiores deserunt in voluptatibus aspernatur architecto excepturi delectus soluta? Ipsa, deleniti dolorem hic consequatur repellat eveniet quidem voluptate necessitatibus dolorum delectus minus vitae, ut, veritatis sint ipsum magnam autem nam ex deserunt debitis eaque ratione! Nobis, quidem assumenda.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+              <img src="imgs/gumball.png" alt="" class="img-fluid">
+            </div>
+        </div>
+        <div class="row align-items-center content">
+            <div class="col-md-6 order-2 order-md-1">
+              <img src="imgs/sprinkles.png" alt="" class="img-fluid">
+            </div>
+            <div class="col-md-6 text-center order-1 order-md-2">
+              <div class="row justify-content-center">
+                <div class="col-10 col-lg-8 blurb mb-5 mb-md-0">
+                    <h2>MUSEUM OF CANDY</h2>
+                    <img class="d-none d-lg-inline" src="imgs/lolli_icon.png" alt="">
+                    <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, iste molestiae beatae, maiores deserunt in voluptatibus aspernatur architecto excepturi delectus soluta? Ipsa, deleniti dolorem hic consequatur repellat eveniet quidem voluptate necessitatibus dolorum delectus minus vitae, ut, veritatis sint ipsum magnam autem nam ex deserunt debitis eaque ratione! Nobis, quidem assumenda.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+    </section>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            $(document).scroll(function () {
+                var $nav = $("#mainNavbar");
+                $nav.toggleClass("scrolled", $(this).scrollTop() > $nav.height());
+            });
+        });
+    </script>
+  </body>
 </html>
