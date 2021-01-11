@@ -1,125 +1,73 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+{% extends 'base.html' %}
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,300,400,700" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&family=Potta+One&display=swap" rel="stylesheet">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
-    <!-- Custom CSS -->
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'css/app.css' %}">
-
-    <title>TIGI Reviews DB</title>
-  </head>
-
-  <body>
-    <div class="container-fluid mx-0 px-0">
-      <div class="hey d-flex justify-content-center align-items-center">
-        <p class="h1" id="sitename">TIGI</p>
+{% block title %}el-critico reviews DB{% endblock %}
+{% block content %}
+{% load static %}
+    <section class="container-fluid px-0 pb-5">
+      <div class="row align-items-center">
+        <div class ="col-lg-1">
+        </div>
+        <div class="col-lg-10 align-items-center">
+          <div id="headingGroup" class="text-white text-center d-lg-block mt-5">
+              <img id="popcorn" src="data:image/svg+xml;base64,PHN2ZyBpZD0iRmlsbGVkIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHdpZHRoPSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTM0NCAxMDRjLS4zNCAwLS42OC4wMS0xLjAyLjAyYTMxLjY0OSAzMS42NDkgMCAwIDAgMS4wMi04LjAyIDMyLjAwOCAzMi4wMDggMCAwIDAgLTYyLjgyLTguNjYgNDguMTE3IDQ4LjExNyAwIDAgMCAtNDkuMTktMjIuNjhjLjAxLS4yMi4wMS0uNDQuMDEtLjY2YTQwIDQwIDAgMCAwIC03OS4zNi03LjEyIDQwLjAwNiA0MC4wMDYgMCAwIDAgLTcyLjQgMjcuNTUyIDMyIDMyIDAgMSAwIC0zMi4yNCA1NS4yNzZ2NjAuMjkyaDMxMnYtNTQuMTJhMjMuOTk0IDIzLjk5NCAwIDAgMCAtMTYtNDEuODh6IiBmaWxsPSIjZmRlNTc1Ii8+PHBhdGggZD0ibTM0NCA0MjRoLTI4OGwtMTYtMjQ4aDMyMHoiIGZpbGw9IiMyYjcwYTgiLz48cGF0aCBkPSJtMzYwIDE3Ni0xNiAyNDhoLTI0MHYtMjQ4eiIgZmlsbD0ibm9uZSIvPjxnIGZpbGw9IiNjZTM1MzYiPjxwYXRoIGQ9Im0xMDQgMTc2djI0OGgtNDhsLTE2LTI0OHoiLz48cGF0aCBkPSJtMTY4IDE3Nmg2NHYyNDhoLTY0eiIvPjxwYXRoIGQ9Im0zNDQgNDI0aC00OHYtMjQ4aDY0eiIvPjwvZz48cGF0aCBkPSJtNDAgMTY4aDMyMGExNiAxNiAwIDAgMSAxNiAxNnYxNmEwIDAgMCAwIDEgMCAwaC0zNTJhMCAwIDAgMCAxIDAgMHYtMTZhMTYgMTYgMCAwIDEgMTYtMTZ6IiBmaWxsPSIjYTUyYjJiIi8+PHBhdGggZD0ibTQ4OCAzNzZ2OTZhMTYgMTYgMCAwIDEgLTE2IDE2aC0xMzZsLTE2LTMyLTE2IDMyaC0xMzZhMTYgMTYgMCAwIDEgLTE2LTE2di05NmExNiAxNiAwIDAgMSAxNi0xNmgxMzZsMTYgMzIgMTYtMzJoMTM2YTE2IDE2IDAgMCAxIDE2IDE2eiIgZmlsbD0iI2ZhZThkOCIvPjxwYXRoIGQ9Im0xODQgMzkyaDk2djY0aC05NnoiIGZpbGw9IiMyYjcwYTgiLz48cGF0aCBkPSJtMzYwIDM5Mmg5NnY2NGgtOTZ6IiBmaWxsPSIjY2UzNTM2Ii8+PHBhdGggZD0ibTI0IDIwOGg4LjU1MWwxNS40NyAyMTYuNTdhOCA4IDAgMCAwIDcuOTc5IDcuNDNoODh2NDBhMjQuMDI4IDI0LjAyOCAwIDAgMCAyNCAyNGgxMzZhOCA4IDAgMCAwIDcuMTU1LTQuNDIybDguODQ1LTE3LjY4OSA4Ljg0NSAxNy42ODlhOCA4IDAgMCAwIDcuMTU1IDQuNDIyaDEzNmEyNC4wMjggMjQuMDI4IDAgMCAwIDI0LTI0di05NmEyNC4wMjggMjQuMDI4IDAgMCAwIC0yNC0yNGgtMTE1LjMzN2w5LjI4OC0xNDRoMTAuMDQ5YTggOCAwIDAgMCA4LTh2LTE2YTI0LjAzOSAyNC4wMzkgMCAwIDAgLTE2LTIyLjYyNHYtMTIuMjE5YTMyIDMyIDAgMCAwIC0xNi4wMTMtNTIuMTQ4cS4wMTMtLjUwNC4wMTMtMS4wMDlhNDAgNDAgMCAwIDAgLTcyLjM1Mi0yMy41MTMgNTYuNDMgNTYuNDMgMCAwIDAgLTQwLjMxNC0xNi40ODcgNDguMDIxIDQ4LjAyMSAwIDAgMCAtOTAuMDIzLTE0IDQ3Ljk4OCA0Ny45ODggMCAwIDAgLTc2Ljc5IDMwLjkxNSAzOS45OTMgMzkuOTkzIDAgMCAwIC0zMi41MjEgNzEuMDczdjE2LjAxMmEyNC4wMjggMjQuMDI4IDAgMCAwIC0yNCAyNHYxNmE4IDggMCAwIDAgOCA4em0yNC41OTIgMGg0Ny40MDh2MjA4aC0zMi41NTF6bTYzLjQwOCAyMDh2LTIwOGg0OHYxNDUuMzc2YTI0LjAzOSAyNC4wMzkgMCAwIDAgLTE2IDIyLjYyNHY0MHptMTI4LTY0di0xNDRoNDh2MTQ0em0tMTYgMGgtNDh2LTE0NGg0OHptMjU2IDI0djk2YTguMDA5IDguMDA5IDAgMCAxIC04IDhoLTEzMS4wNTZsLTEzLjc4OS0yNy41NzhhOCA4IDAgMCAwIC0xNC4zMSAwbC0xMy43ODkgMjcuNTc4aC0xMzEuMDU2YTguMDA5IDguMDA5IDAgMCAxIC04LTh2LTk2YTguMDA5IDguMDA5IDAgMCAxIDgtOGgxMzEuMDU2bDEzLjc4OSAyNy41NzhhOCA4IDAgMCAwIDE0LjMxIDBsMTMuNzg5LTI3LjU3OGgxMzEuMDU2YTguMDA5IDguMDA5IDAgMCAxIDggOHptLTEzOS4zNzEtMjRoLTQuNjI5YTggOCAwIDAgMCAtNy4xNTUgNC40MjJsLTguODQ1IDE3LjY4OS04Ljg0NS0xNy42ODlhOCA4IDAgMCAwIC03LjE1NS00LjQyMnYtMTQ0aDQ1LjkxN3ptLTI4OC42MTctMjE5LjIxMmEyNCAyNCAwIDEgMSAyNC4xNjEtNDEuNDY5IDggOCAwIDAgMCAxMi4wMTgtNy43NjcgMzIuNTc3IDMyLjU3NyAwIDAgMSAtLjE5MS0zLjU1MiAzMiAzMiAwIDAgMSA1OC4xMTUtMTguNDkxIDggOCAwIDAgMCAxNC40LTMuMjE3IDMyIDMyIDAgMCAxIDYzLjQ4NSA1LjcwOHYuMzA2YTggOCAwIDAgMCA5LjMyMiA4LjI0MyA0MC4zMjYgNDAuMzI2IDAgMCAxIDYuNjc4LS41NDkgMzkuNjkzIDM5LjY5MyAwIDAgMSAzNC4zMTggMTkuNDUzIDggOCAwIDAgMCAxNC41NjQtMS45NSAyNC4wMDggMjQuMDA4IDAgMCAxIDQ3LjExOCA2LjQ5NyAyMy42ODEgMjMuNjgxIDAgMCAxIC0uNzU5IDYgOCA4IDAgMCAwIDcuOTgxIDEwLjAyMmMuMjU5LS4wMDguNTE4LS4wMTcuNzc4LS4wMTdhMTUuOTk0IDE1Ljk5NCAwIDAgMSAxMC42NjggMjcuOTE2IDggOCAwIDAgMCAtMi42NjggNS45NTl2MTQuMTJoLTI5NnYtMjAuMjlhOCA4IDAgMCAwIC0zLjk4OC02LjkyMnptLTIwLjAxMiA1MS4yMTJhOC4wMDkgOC4wMDkgMCAwIDEgOC04aDMyMGE4LjAwOSA4LjAwOSAwIDAgMSA4IDh2OGgtMzM2eiIvPjxwYXRoIGQ9Im0yODAgMzg0aC05NmE4IDggMCAwIDAgLTggOHY2NGE4IDggMCAwIDAgOCA4aDk2YTggOCAwIDAgMCA4LTh2LTY0YTggOCAwIDAgMCAtOC04em0tOCA2NGgtODB2LTQ4aDgweiIvPjxwYXRoIGQ9Im0zNjAgNDY0aDk2YTggOCAwIDAgMCA4LTh2LTY0YTggOCAwIDAgMCAtOC04aC05NmE4IDggMCAwIDAgLTggOHY2NGE4IDggMCAwIDAgOCA4em04LTY0aDgwdjQ4aC04MHoiLz48cGF0aCBkPSJtMjI0IDEzNmEzMi4wMzYgMzIuMDM2IDAgMCAwIDMyLTMyIDggOCAwIDAgMCAtMTYgMCAxNiAxNiAwIDAgMSAtMzIgMCA4IDggMCAwIDAgLTE2IDAgMzIuMDM2IDMyLjAzNiAwIDAgMCAzMiAzMnoiLz48cGF0aCBkPSJtMTI4IDEyOGE4IDggMCAwIDAgMCAxNiAzMiAzMiAwIDAgMCAwLTY0IDggOCAwIDAgMCAwIDE2IDE2IDE2IDAgMCAxIDAgMzJ6Ii8+PC9zdmc+" />
+              <h1 class="display-2"><span>#</span>Welcome to the best place to find reviews for movies<span>!</span></h1>
+          </div>
+        </div>
+        <div class ="col-lg-1">
+        </div>
       </div>
-      <div class="hey d-flex justify-content-center align-items-center">
-        <p class = "h2" id="slogen">The best place to get your movie reviews</p>
-      </div>
-    </div>
-
-
-    <nav id="mainNavbar" class="navbar navbar-dark navbar-expand-md py-0 sticky-top">
-      <a href="#" class="navbar-brand">HOME</a>
-      <button class="navbar-toggler" data-toggle="collapse" data-target="#navLinks" aria-label="toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div id= "navLinks" class="collapse navbar-collapse">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a href="" class="nav-link">SUBMIT REVIEW</a>
-          </li>
-          <li class="nav-item">
-            <a href="{% url 'finder_critics' %}" class="nav-link">TOP MOVIES</a>
-          </li>
-          <li class="nav-item">
-            <a href="" class="nav-link">CONTACT US</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    </section>
 
     <section class="container-fluid px-0">
       <div class="row align-items-center">
-        <div class="col-lg-6">
-          <div id="headingGroup" class="text-white text-center d-none d-lg-block mt-5">
-              <img id="popcorn" src="data:image/svg+xml;base64,PHN2ZyBpZD0iRmlsbGVkIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHdpZHRoPSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTM0NCAxMDRjLS4zNCAwLS42OC4wMS0xLjAyLjAyYTMxLjY0OSAzMS42NDkgMCAwIDAgMS4wMi04LjAyIDMyLjAwOCAzMi4wMDggMCAwIDAgLTYyLjgyLTguNjYgNDguMTE3IDQ4LjExNyAwIDAgMCAtNDkuMTktMjIuNjhjLjAxLS4yMi4wMS0uNDQuMDEtLjY2YTQwIDQwIDAgMCAwIC03OS4zNi03LjEyIDQwLjAwNiA0MC4wMDYgMCAwIDAgLTcyLjQgMjcuNTUyIDMyIDMyIDAgMSAwIC0zMi4yNCA1NS4yNzZ2NjAuMjkyaDMxMnYtNTQuMTJhMjMuOTk0IDIzLjk5NCAwIDAgMCAtMTYtNDEuODh6IiBmaWxsPSIjZmRlNTc1Ii8+PHBhdGggZD0ibTM0NCA0MjRoLTI4OGwtMTYtMjQ4aDMyMHoiIGZpbGw9IiMyYjcwYTgiLz48cGF0aCBkPSJtMzYwIDE3Ni0xNiAyNDhoLTI0MHYtMjQ4eiIgZmlsbD0ibm9uZSIvPjxnIGZpbGw9IiNjZTM1MzYiPjxwYXRoIGQ9Im0xMDQgMTc2djI0OGgtNDhsLTE2LTI0OHoiLz48cGF0aCBkPSJtMTY4IDE3Nmg2NHYyNDhoLTY0eiIvPjxwYXRoIGQ9Im0zNDQgNDI0aC00OHYtMjQ4aDY0eiIvPjwvZz48cGF0aCBkPSJtNDAgMTY4aDMyMGExNiAxNiAwIDAgMSAxNiAxNnYxNmEwIDAgMCAwIDEgMCAwaC0zNTJhMCAwIDAgMCAxIDAgMHYtMTZhMTYgMTYgMCAwIDEgMTYtMTZ6IiBmaWxsPSIjYTUyYjJiIi8+PHBhdGggZD0ibTQ4OCAzNzZ2OTZhMTYgMTYgMCAwIDEgLTE2IDE2aC0xMzZsLTE2LTMyLTE2IDMyaC0xMzZhMTYgMTYgMCAwIDEgLTE2LTE2di05NmExNiAxNiAwIDAgMSAxNi0xNmgxMzZsMTYgMzIgMTYtMzJoMTM2YTE2IDE2IDAgMCAxIDE2IDE2eiIgZmlsbD0iI2ZhZThkOCIvPjxwYXRoIGQ9Im0xODQgMzkyaDk2djY0aC05NnoiIGZpbGw9IiMyYjcwYTgiLz48cGF0aCBkPSJtMzYwIDM5Mmg5NnY2NGgtOTZ6IiBmaWxsPSIjY2UzNTM2Ii8+PHBhdGggZD0ibTI0IDIwOGg4LjU1MWwxNS40NyAyMTYuNTdhOCA4IDAgMCAwIDcuOTc5IDcuNDNoODh2NDBhMjQuMDI4IDI0LjAyOCAwIDAgMCAyNCAyNGgxMzZhOCA4IDAgMCAwIDcuMTU1LTQuNDIybDguODQ1LTE3LjY4OSA4Ljg0NSAxNy42ODlhOCA4IDAgMCAwIDcuMTU1IDQuNDIyaDEzNmEyNC4wMjggMjQuMDI4IDAgMCAwIDI0LTI0di05NmEyNC4wMjggMjQuMDI4IDAgMCAwIC0yNC0yNGgtMTE1LjMzN2w5LjI4OC0xNDRoMTAuMDQ5YTggOCAwIDAgMCA4LTh2LTE2YTI0LjAzOSAyNC4wMzkgMCAwIDAgLTE2LTIyLjYyNHYtMTIuMjE5YTMyIDMyIDAgMCAwIC0xNi4wMTMtNTIuMTQ4cS4wMTMtLjUwNC4wMTMtMS4wMDlhNDAgNDAgMCAwIDAgLTcyLjM1Mi0yMy41MTMgNTYuNDMgNTYuNDMgMCAwIDAgLTQwLjMxNC0xNi40ODcgNDguMDIxIDQ4LjAyMSAwIDAgMCAtOTAuMDIzLTE0IDQ3Ljk4OCA0Ny45ODggMCAwIDAgLTc2Ljc5IDMwLjkxNSAzOS45OTMgMzkuOTkzIDAgMCAwIC0zMi41MjEgNzEuMDczdjE2LjAxMmEyNC4wMjggMjQuMDI4IDAgMCAwIC0yNCAyNHYxNmE4IDggMCAwIDAgOCA4em0yNC41OTIgMGg0Ny40MDh2MjA4aC0zMi41NTF6bTYzLjQwOCAyMDh2LTIwOGg0OHYxNDUuMzc2YTI0LjAzOSAyNC4wMzkgMCAwIDAgLTE2IDIyLjYyNHY0MHptMTI4LTY0di0xNDRoNDh2MTQ0em0tMTYgMGgtNDh2LTE0NGg0OHptMjU2IDI0djk2YTguMDA5IDguMDA5IDAgMCAxIC04IDhoLTEzMS4wNTZsLTEzLjc4OS0yNy41NzhhOCA4IDAgMCAwIC0xNC4zMSAwbC0xMy43ODkgMjcuNTc4aC0xMzEuMDU2YTguMDA5IDguMDA5IDAgMCAxIC04LTh2LTk2YTguMDA5IDguMDA5IDAgMCAxIDgtOGgxMzEuMDU2bDEzLjc4OSAyNy41NzhhOCA4IDAgMCAwIDE0LjMxIDBsMTMuNzg5LTI3LjU3OGgxMzEuMDU2YTguMDA5IDguMDA5IDAgMCAxIDggOHptLTEzOS4zNzEtMjRoLTQuNjI5YTggOCAwIDAgMCAtNy4xNTUgNC40MjJsLTguODQ1IDE3LjY4OS04Ljg0NS0xNy42ODlhOCA4IDAgMCAwIC03LjE1NS00LjQyMnYtMTQ0aDQ1LjkxN3ptLTI4OC42MTctMjE5LjIxMmEyNCAyNCAwIDEgMSAyNC4xNjEtNDEuNDY5IDggOCAwIDAgMCAxMi4wMTgtNy43NjcgMzIuNTc3IDMyLjU3NyAwIDAgMSAtLjE5MS0zLjU1MiAzMiAzMiAwIDAgMSA1OC4xMTUtMTguNDkxIDggOCAwIDAgMCAxNC40LTMuMjE3IDMyIDMyIDAgMCAxIDYzLjQ4NSA1LjcwOHYuMzA2YTggOCAwIDAgMCA5LjMyMiA4LjI0MyA0MC4zMjYgNDAuMzI2IDAgMCAxIDYuNjc4LS41NDkgMzkuNjkzIDM5LjY5MyAwIDAgMSAzNC4zMTggMTkuNDUzIDggOCAwIDAgMCAxNC41NjQtMS45NSAyNC4wMDggMjQuMDA4IDAgMCAxIDQ3LjExOCA2LjQ5NyAyMy42ODEgMjMuNjgxIDAgMCAxIC0uNzU5IDYgOCA4IDAgMCAwIDcuOTgxIDEwLjAyMmMuMjU5LS4wMDguNTE4LS4wMTcuNzc4LS4wMTdhMTUuOTk0IDE1Ljk5NCAwIDAgMSAxMC42NjggMjcuOTE2IDggOCAwIDAgMCAtMi42NjggNS45NTl2MTQuMTJoLTI5NnYtMjAuMjlhOCA4IDAgMCAwIC0zLjk4OC02LjkyMnptLTIwLjAxMiA1MS4yMTJhOC4wMDkgOC4wMDkgMCAwIDEgOC04aDMyMGE4LjAwOSA4LjAwOSAwIDAgMSA4IDh2OGgtMzM2eiIvPjxwYXRoIGQ9Im0yODAgMzg0aC05NmE4IDggMCAwIDAgLTggOHY2NGE4IDggMCAwIDAgOCA4aDk2YTggOCAwIDAgMCA4LTh2LTY0YTggOCAwIDAgMCAtOC04em0tOCA2NGgtODB2LTQ4aDgweiIvPjxwYXRoIGQ9Im0zNjAgNDY0aDk2YTggOCAwIDAgMCA4LTh2LTY0YTggOCAwIDAgMCAtOC04aC05NmE4IDggMCAwIDAgLTggOHY2NGE4IDggMCAwIDAgOCA4em04LTY0aDgwdjQ4aC04MHoiLz48cGF0aCBkPSJtMjI0IDEzNmEzMi4wMzYgMzIuMDM2IDAgMCAwIDMyLTMyIDggOCAwIDAgMCAtMTYgMCAxNiAxNiAwIDAgMSAtMzIgMCA4IDggMCAwIDAgLTE2IDAgMzIuMDM2IDMyLjAzNiAwIDAgMCAzMiAzMnoiLz48cGF0aCBkPSJtMTI4IDEyOGE4IDggMCAwIDAgMCAxNiAzMiAzMiAwIDAgMCAwLTY0IDggOCAwIDAgMCAwIDE2IDE2IDE2IDAgMCAxIDAgMzJ6Ii8+PC9zdmc+" />
-              <h1 class="display-2"><span>#</span>Welcome to the best place to find reviews for movies<span>!</span></h1>
+        <div class="col-lg-1">
+        </div>
+        <div class="col-lg-5 align-items-center">
+          <img class="img-fluid" id="posters" src="{% static 'imgs/movie-poster.jpg' %}" alt="">
+        </div>
+        <div class="col-lg-5">
+          <div id="headingGroup" class="text-white text-center d-lg-block mt-5">
+              <img id="critic" src="data:image/svg+xml;base64,PHN2ZyBpZD0iRmlsbGVkIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHdpZHRoPSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTU2IDI2NGgyNDBhMzIgMzIgMCAwIDEgMzIgMzJ2MTkyYTAgMCAwIDAgMSAwIDBoLTMwNGEwIDAgMCAwIDEgMCAwdi0xOTJhMzIgMzIgMCAwIDEgMzItMzJ6IiBmaWxsPSIjMmQ4NWNjIi8+PHBhdGggZD0ibTMyOCAyOTZ2MTkyaC0xNTJ2LTIyNGgxMjBhMzIgMzIgMCAwIDEgMzIgMzJ6IiBmaWxsPSIjMmQ4NWNjIi8+PHJlY3QgZmlsbD0iIzRmNTY1OSIgaGVpZ2h0PSI4OCIgcng9IjI0IiB3aWR0aD0iNDgiIHg9IjI2NCIgeT0iNDgiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSIxNjgiIGZpbGw9IiNmMGM2YTQiIHI9IjMyIi8+PGNpcmNsZSBjeD0iNzIiIGN5PSIxNjgiIGZpbGw9IiNmMGM2YTQiIHI9IjMyIi8+PHJlY3QgZmlsbD0iI2Y3Y2NhOSIgaGVpZ2h0PSIyNDAiIHJ4PSIxMDQiIHdpZHRoPSIyMDgiIHg9IjcyIiB5PSIyNCIvPjxwYXRoIGQ9Im0zMDQgMzQ0aDE4NHYxNDRoLTE4NHoiIGZpbGw9IiNlOWVlZjIiLz48cGF0aCBkPSJtNDgwLjMzIDI3OC4wNC0zNC43OSAxMS42MmgtLjAxbC0yMS40NSA3LjE2LS4wMS4wMS0xNi40OCA1LjUtMjEuNDYgNy4xNi0xNi40OCA1LjUtMjEuNDYgNy4xNy0xNi40OCA1LjUtMjEuNDYgNy4xNnYuMDFsLTQuNDUgMS40OC0xMC4xMy0zMC4zNSAzNC43OC0xMS42MS4wMS0uMDEgMjEuNDctNy4xNnYtLjAxbDE2LjQ4LTUuNSAyMS40Ni03LjE2IDE2LjQ4LTUuNSAyMS40Ni03LjE3IDE2LjQ4LTUuNSAyMS40NS03LjE2LjAxLS4wMSA0LjQ1LTEuNDh6IiBmaWxsPSIjN2U4NTg5Ii8+PHBhdGggZD0ibTMwNCAzNDRoMTg0djMyaC0xODR6IiBmaWxsPSIjN2U4NTg5Ii8+PHBhdGggZD0ibTM0NCA0NDBoMTA0djQ4aC0xMDR6IiBmaWxsPSIjNGY1NjU5Ii8+PHBhdGggZD0ibTQwIDcydjM5LjQ2YzAgMTMuNDU1IDExLjAxMSAyNC43OTEgMjQuNDY0IDI0LjU0YTI0IDI0IDAgMCAwIDIzLjUzNi0yNCAyNCAyNCAwIDAgMSAyNC0yNGgxMzZhMzIgMzIgMCAwIDAgMzItMzIgMzIgMzIgMCAwIDAgLTMyLTMyaC0xNjBhNDggNDggMCAwIDAgLTQ4IDQ4eiIgZmlsbD0iIzRmNTY1OSIvPjxwYXRoIGQ9Im0xMzYgMzEyIDQwIDk2IDQwLTk2di00OGgtODB6IiBmaWxsPSIjZTllZWYyIi8+PHBhdGggZD0ibTE3NiAyNjQgNTYgNjR2LTY0eiIgZmlsbD0iI2RhZGNkZSIvPjxwYXRoIGQ9Im0xNzYgMjY0LTU2IDY0di02NHoiIGZpbGw9IiNkYWRjZGUiLz48Y2lyY2xlIGN4PSIxMzYiIGN5PSIxNjAiIHI9IjgiLz48cGF0aCBkPSJtNDg4IDMzNmgtMTU2bDE1MC44Ny01MC4zN2E4IDggMCAwIDAgNS4wNTUtMTAuMTIxbC0xMC4xMzQtMzAuMzU0YTggOCAwIDAgMCAtMTAuMTIxLTUuMDU0bC0xMzMuMzMxIDQ0LjUxMmE0MC4wNjYgNDAuMDY2IDAgMCAwIC0zOC4zMzktMjguNjEzaC02Mi4zNjlhMTEyLjc2OSAxMTIuNzY5IDAgMCAwIDQzLjU0OC00OGgyLjgyMWEzOS45NzcgMzkuOTc3IDAgMCAwIDI2LjUwOS02OS45MjEgMzEuOTc0IDMxLjk3NCAwIDAgMCAxMy40OTEtMjYuMDc5di00MGEzMi4wMzYgMzIuMDM2IDAgMCAwIC0zMi0zMiAzMi4zNjYgMzIuMzY2IDAgMCAwIC0zLjI3Mi4xNzIgNDAuMDU2IDQwLjA1NiAwIDAgMCAtMzYuNzI4LTI0LjE3MmgtMTYwYTU2LjA2MyA1Ni4wNjMgMCAwIDAgLTU2IDU2djM5LjQ2YTMyLjg1MiAzMi44NTIgMCAwIDAgMTMuNTgzIDI2LjU0IDM5Ljk3OCAzOS45NzggMCAwIDAgMjYuNDE3IDcwaDIuODIxYTExMi43NjkgMTEyLjc2OSAwIDAgMCA0My41NDggNDhoLTYyLjM2OWE0MC4wNDUgNDAuMDQ1IDAgMCAwIC00MCA0MHYxOTJhOCA4IDAgMCAwIDggOGg0NjRhOCA4IDAgMCAwIDgtOHYtMTQ0YTggOCAwIDAgMCAtOC04em0tOCAzMmgtMjAuNjg2bDE2LTE2aDQuNjg2em0tMTY4IDB2LTE2aDIwLjY4NmwtMTYgMTZ6bTQzLjMxNC0xNmgxNy4zNzJsLTE2IDE2aC0xNy4zNzJ6bTQwIDBoMTcuMzcybC0xNiAxNmgtMTcuMzcyem00MCAwaDE3LjM3MmwtMTYgMTZoLTE3LjM3MnptLTQ0LjEyOS01Mi42MjktMTYuNDc5IDUuNSAxMC4xMDktMjAuMjQ0IDE2LjQ3OS01LjV6bTMxLjU3Mi0yNy40MDkgMTYuNDc4LTUuNS0xMC4xMDkgMjAuMjM4LTE2LjQ3OSA1LjV6bS02OS41MTQgNDAuMDc2LTE2LjQ3OCA1LjUgMTAuMTA5LTIwLjIzOCAxNi40NzktNS41em0tMjcuODMyLTcuNTc2LTEwLjExMSAyMC4yNDMtNC40NDYgMS40ODQtNS4wNjYtMTUuMTc2em0xNDQuOC0zMS40NzUtMTkuNjIxIDYuNTUxIDEwLjExLTIwLjIzOCA0LjQ0Ni0xLjQ4NHptLTE1MS4wNTkgMTYuNy0yNi4wMTYgOC42ODZhOCA4IDAgMCAwIC01LjA1NSAxMC4xMjFsMTAuMDQ2IDMwLjA5MWE3Ljk2MSA3Ljk2MSAwIDAgMCAtMi4xMjcgNS40MTV2MTM2aC0xMTJ2LTcwLjRsMzUuMDg3LTg0LjIxIDYuODkyIDcuODc3YTggOCAwIDAgMCAxNC4wMjEtNS4yNjd2LTU2aDU2YTI0LjA0IDI0LjA0IDAgMCAxIDIzLjE1MSAxNy42ODR6bS0xOTEuMTUyLTE3LjY4N2gzMC4zN2wtMzAuMzcgMzQuNzA4em02NS42MyAwaDMwLjM3djM0LjcwOHptLTE3LjYzIDQuMTQ4IDMxLjM0NSAzNS44MjMtMzEuMzQ1IDc1LjIyOS0zMS4zNDUtNzUuMjI5em03OC42MjQtMTMyLjE0OGEyNC4wMzkgMjQuMDM5IDAgMCAwIC0yMi42MjQtMTZoLTMyYTI0LjAyOCAyNC4wMjggMCAwIDAgLTI0IDI0IDI0LjAyOCAyNC4wMjggMCAwIDAgLTI0LTI0aC0zMmEyNC4wMzkgMjQuMDM5IDAgMCAwIC0yMi42MjQgMTZoLTE3LjM3NnYtNC4zNDVhMzIuMTMyIDMyLjEzMiAwIDAgMCAxNi0yNy42NTUgMTYuMDE5IDE2LjAxOSAwIDAgMSAxNi0xNmgxMzZhMzkuNzQ4IDM5Ljc0OCAwIDAgMCAxNy4wODgtMy44NDMgOTUuMDExIDk1LjAxMSAwIDAgMSA2LjkxMiAzNS44NDN2MTZ6bS0xNC42MjQgOHYxNmE4LjAwOSA4LjAwOSAwIDAgMSAtOCA4aC0zMmE4LjAwOSA4LjAwOSAwIDAgMSAtOC04di0xNmE4LjAwOSA4LjAwOSAwIDAgMSA4LThoMzJhOC4wMDkgOC4wMDkgMCAwIDEgOCA4em0tODAgMHYxNmE4LjAwOSA4LjAwOSAwIDAgMSAtOCA4aC0zMmE4LjAwOSA4LjAwOSAwIDAgMSAtOC04di0xNmE4LjAwOSA4LjAwOSAwIDAgMSA4LThoMzJhOC4wMDkgOC4wMDkgMCAwIDEgOCA4em0xMjMuNDA4IDM5Ljc1NGExMTEuNjUyIDExMS42NTIgMCAwIDAgNC41OTItMzEuNzU0di0xNC42MjRhMjQgMjQgMCAwIDEgLTQuNTkyIDQ2LjM3OHptMjAuNTkyLTExOS43NTR2NDBhMTYuMDE5IDE2LjAxOSAwIDAgMSAtMTYgMTYgMTEyLjQ4NSAxMTIuNDg1IDAgMCAwIC05Ljc4Ni00NS44MzIgMzkuODIyIDM5LjgyMiAwIDAgMCA5Ljc4Ni0yNi4xNjggMTYuMDE5IDE2LjAxOSAwIDAgMSAxNiAxNnptLTI1NiAwYTQwLjA0NSA0MC4wNDUgMCAwIDEgNDAtNDBoMTYwYTI0IDI0IDAgMCAxIDAgNDhoLTEzNmEzMi4wMzYgMzIuMDM2IDAgMCAwIC0zMiAzMiAxNi4wNzUgMTYuMDc1IDAgMCAxIC0xNS42ODggMTYgMTUuNTY1IDE1LjU2NSAwIDAgMSAtMTEuMjU3LTQuNTczIDE2Ljg4IDE2Ljg4IDAgMCAxIC01LjA1NS0xMS45Njd6bTAgOTZhMjQuMDM5IDI0LjAzOSAwIDAgMSAxNi0yMi42MjR2MTQuNjI0YTExMS42NTIgMTExLjY1MiAwIDAgMCA0LjU5MiAzMS43NTQgMjQuMDM1IDI0LjAzNSAwIDAgMSAtMjAuNTkyLTIzLjc1NHptMzItOGgxNnY4YTI0LjAyOCAyNC4wMjggMCAwIDAgMjQgMjRoMzJhMjQuMDI4IDI0LjAyOCAwIDAgMCAyNC0yNCAyNC4wMjggMjQuMDI4IDAgMCAwIDI0IDI0aDMyYTI0LjAyOCAyNC4wMjggMCAwIDAgMjQtMjR2LThoMTZhOTYgOTYgMCAwIDEgLTE5MiAwem0tNDggMTM2YTI0LjAyOCAyNC4wMjggMCAwIDEgMjQtMjRoNTZ2NTZhOCA4IDAgMCAwIDE0LjAyMSA1LjI2OGw2Ljg5Mi03Ljg3NyAzNS4wODcgODQuMjA5djcwLjRoLTEzNnptNDA4IDE4NGgtODh2LTMyaDg4em0xNiAwdi00MGE4IDggMCAwIDAgLTgtOGgtMTA0YTggOCAwIDAgMCAtOCA4djQwaC0yNHYtOTZoMTY4djk2eiIvPjxwYXRoIGQ9Im00MTYgNDAwaC03MmE4IDggMCAwIDAgMCAxNmg3MmE4IDggMCAwIDAgMC0xNnoiLz48Y2lyY2xlIGN4PSI0NDgiIGN5PSI0MDgiIHI9IjgiLz48Y2lyY2xlIGN4PSIyMTYiIGN5PSIxNjAiIHI9IjgiLz48cGF0aCBkPSJtMjE2IDIwMGE3Ljk4NyA3Ljk4NyAwIDAgMCAtNi43NzggMy43NjRoLS4wMDZsLjA3NS0uMTE3Yy0uMzQyLjUtOC42NDQgMTIuMzU3LTMzLjI5MSAxMi4zNTdzLTMyLjk0OS0xMS44NTMtMzMuMjkxLTEyLjM1N2wuMDc1LjExN2gtLjAwNmE3Ljk5MyA3Ljk5MyAwIDEgMCAtMTMuNTU2IDguNDcyaC0uMDA2Yy41NzcuOTIzIDMuODI5IDUuNzY3IDExLjIyMiAxMC41IDYuNiA0LjIyNiAxOC4xMyA5LjI2MiAzNS41NjIgOS4yNjJzMjguOTYxLTUuMDM2IDM1LjU2Mi05LjI2MmM3LjM5My00LjczMSAxMC42NDUtOS41NzUgMTEuMjIyLTEwLjVoLS4wMDZhNy45ODkgNy45ODkgMCAwIDAgLTYuNzc4LTEyLjIzNnoiLz48L3N2Zz4=" />
+              <h1 class="display-2"><span>#</span>About us<span>:</span></h1>
+              <p class="lead">We are here to give <span>you</span> the best movie reviews you need so you can choose your next movie wisely<span>!</span></p>
+              <p class="lead">We are able to do so using the best reviewers and movie critics out there, including the New York Times critics<span>!</span></p>
+              <span class="display-4">#</span><img id="nyt" src="{% static 'imgs/NYT.png' %}" alt="">
           </div>
         </div>
-        <div class="col-lg-6">
-          <img class="img-fluid" src="imgs/red-chairs.jpg" alt="">
+        <div class="col-lg-1">
+        </div>
+      </div>
+    </section>
+
+
+    <section class="container-fluid px-0">
+      <div class="row align-items-center">
+        <div class ="col-lg-1">
+
+        </div>
+        <div class="col-lg-10 align-items-center">
+          <div id="headingGroup" class="text-white text-center d-lg-block mt-5">
+              <h1 class="display-2"><span>#</span>Contact us<span>:</span></h1>
+              <p class="lead"><span>mail:</span> contact<span>@</span>elcritico<span>.</span>com</p>
+              <p class="lead"><span>phone: +</span>972<span>-</span>54<span>-</span>1234567</p>
+              <p class="lead"><span>address: </span>1600 Amphitheatre Parkway<span>,</span></p>
+              <p class="lead">Mountain View<span>,</span> California<span>,</span> U<span>.</span>S<span>.</span></p>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="container-fluid px-0">
-      <div class="row align-items-center content">
-        <div class="col-md-6 order-2 order-md-1">
-          <img class="img-fluid" src="imgs/red-chairs.jpg" alt="">
+      <div class="row align-items-center">
+        <div class ="col-lg-1">
+
         </div>
-        <div class="col-md-6 text-center order-1 order-md-2">
-          <div class="row justify-content-center">
-            <div class="col-10 col-lg-8 blurb mb-5 mb-md-0">
-              <img id="popcorn" src="data:image/svg+xml;base64,PHN2ZyBpZD0iRmlsbGVkIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHdpZHRoPSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTM0NCAxMDRjLS4zNCAwLS42OC4wMS0xLjAyLjAyYTMxLjY0OSAzMS42NDkgMCAwIDAgMS4wMi04LjAyIDMyLjAwOCAzMi4wMDggMCAwIDAgLTYyLjgyLTguNjYgNDguMTE3IDQ4LjExNyAwIDAgMCAtNDkuMTktMjIuNjhjLjAxLS4yMi4wMS0uNDQuMDEtLjY2YTQwIDQwIDAgMCAwIC03OS4zNi03LjEyIDQwLjAwNiA0MC4wMDYgMCAwIDAgLTcyLjQgMjcuNTUyIDMyIDMyIDAgMSAwIC0zMi4yNCA1NS4yNzZ2NjAuMjkyaDMxMnYtNTQuMTJhMjMuOTk0IDIzLjk5NCAwIDAgMCAtMTYtNDEuODh6IiBmaWxsPSIjZmRlNTc1Ii8+PHBhdGggZD0ibTM0NCA0MjRoLTI4OGwtMTYtMjQ4aDMyMHoiIGZpbGw9IiMyYjcwYTgiLz48cGF0aCBkPSJtMzYwIDE3Ni0xNiAyNDhoLTI0MHYtMjQ4eiIgZmlsbD0ibm9uZSIvPjxnIGZpbGw9IiNjZTM1MzYiPjxwYXRoIGQ9Im0xMDQgMTc2djI0OGgtNDhsLTE2LTI0OHoiLz48cGF0aCBkPSJtMTY4IDE3Nmg2NHYyNDhoLTY0eiIvPjxwYXRoIGQ9Im0zNDQgNDI0aC00OHYtMjQ4aDY0eiIvPjwvZz48cGF0aCBkPSJtNDAgMTY4aDMyMGExNiAxNiAwIDAgMSAxNiAxNnYxNmEwIDAgMCAwIDEgMCAwaC0zNTJhMCAwIDAgMCAxIDAgMHYtMTZhMTYgMTYgMCAwIDEgMTYtMTZ6IiBmaWxsPSIjYTUyYjJiIi8+PHBhdGggZD0ibTQ4OCAzNzZ2OTZhMTYgMTYgMCAwIDEgLTE2IDE2aC0xMzZsLTE2LTMyLTE2IDMyaC0xMzZhMTYgMTYgMCAwIDEgLTE2LTE2di05NmExNiAxNiAwIDAgMSAxNi0xNmgxMzZsMTYgMzIgMTYtMzJoMTM2YTE2IDE2IDAgMCAxIDE2IDE2eiIgZmlsbD0iI2ZhZThkOCIvPjxwYXRoIGQ9Im0xODQgMzkyaDk2djY0aC05NnoiIGZpbGw9IiMyYjcwYTgiLz48cGF0aCBkPSJtMzYwIDM5Mmg5NnY2NGgtOTZ6IiBmaWxsPSIjY2UzNTM2Ii8+PHBhdGggZD0ibTI0IDIwOGg4LjU1MWwxNS40NyAyMTYuNTdhOCA4IDAgMCAwIDcuOTc5IDcuNDNoODh2NDBhMjQuMDI4IDI0LjAyOCAwIDAgMCAyNCAyNGgxMzZhOCA4IDAgMCAwIDcuMTU1LTQuNDIybDguODQ1LTE3LjY4OSA4Ljg0NSAxNy42ODlhOCA4IDAgMCAwIDcuMTU1IDQuNDIyaDEzNmEyNC4wMjggMjQuMDI4IDAgMCAwIDI0LTI0di05NmEyNC4wMjggMjQuMDI4IDAgMCAwIC0yNC0yNGgtMTE1LjMzN2w5LjI4OC0xNDRoMTAuMDQ5YTggOCAwIDAgMCA4LTh2LTE2YTI0LjAzOSAyNC4wMzkgMCAwIDAgLTE2LTIyLjYyNHYtMTIuMjE5YTMyIDMyIDAgMCAwIC0xNi4wMTMtNTIuMTQ4cS4wMTMtLjUwNC4wMTMtMS4wMDlhNDAgNDAgMCAwIDAgLTcyLjM1Mi0yMy41MTMgNTYuNDMgNTYuNDMgMCAwIDAgLTQwLjMxNC0xNi40ODcgNDguMDIxIDQ4LjAyMSAwIDAgMCAtOTAuMDIzLTE0IDQ3Ljk4OCA0Ny45ODggMCAwIDAgLTc2Ljc5IDMwLjkxNSAzOS45OTMgMzkuOTkzIDAgMCAwIC0zMi41MjEgNzEuMDczdjE2LjAxMmEyNC4wMjggMjQuMDI4IDAgMCAwIC0yNCAyNHYxNmE4IDggMCAwIDAgOCA4em0yNC41OTIgMGg0Ny40MDh2MjA4aC0zMi41NTF6bTYzLjQwOCAyMDh2LTIwOGg0OHYxNDUuMzc2YTI0LjAzOSAyNC4wMzkgMCAwIDAgLTE2IDIyLjYyNHY0MHptMTI4LTY0di0xNDRoNDh2MTQ0em0tMTYgMGgtNDh2LTE0NGg0OHptMjU2IDI0djk2YTguMDA5IDguMDA5IDAgMCAxIC04IDhoLTEzMS4wNTZsLTEzLjc4OS0yNy41NzhhOCA4IDAgMCAwIC0xNC4zMSAwbC0xMy43ODkgMjcuNTc4aC0xMzEuMDU2YTguMDA5IDguMDA5IDAgMCAxIC04LTh2LTk2YTguMDA5IDguMDA5IDAgMCAxIDgtOGgxMzEuMDU2bDEzLjc4OSAyNy41NzhhOCA4IDAgMCAwIDE0LjMxIDBsMTMuNzg5LTI3LjU3OGgxMzEuMDU2YTguMDA5IDguMDA5IDAgMCAxIDggOHptLTEzOS4zNzEtMjRoLTQuNjI5YTggOCAwIDAgMCAtNy4xNTUgNC40MjJsLTguODQ1IDE3LjY4OS04Ljg0NS0xNy42ODlhOCA4IDAgMCAwIC03LjE1NS00LjQyMnYtMTQ0aDQ1LjkxN3ptLTI4OC42MTctMjE5LjIxMmEyNCAyNCAwIDEgMSAyNC4xNjEtNDEuNDY5IDggOCAwIDAgMCAxMi4wMTgtNy43NjcgMzIuNTc3IDMyLjU3NyAwIDAgMSAtLjE5MS0zLjU1MiAzMiAzMiAwIDAgMSA1OC4xMTUtMTguNDkxIDggOCAwIDAgMCAxNC40LTMuMjE3IDMyIDMyIDAgMCAxIDYzLjQ4NSA1LjcwOHYuMzA2YTggOCAwIDAgMCA5LjMyMiA4LjI0MyA0MC4zMjYgNDAuMzI2IDAgMCAxIDYuNjc4LS41NDkgMzkuNjkzIDM5LjY5MyAwIDAgMSAzNC4zMTggMTkuNDUzIDggOCAwIDAgMCAxNC41NjQtMS45NSAyNC4wMDggMjQuMDA4IDAgMCAxIDQ3LjExOCA2LjQ5NyAyMy42ODEgMjMuNjgxIDAgMCAxIC0uNzU5IDYgOCA4IDAgMCAwIDcuOTgxIDEwLjAyMmMuMjU5LS4wMDguNTE4LS4wMTcuNzc4LS4wMTdhMTUuOTk0IDE1Ljk5NCAwIDAgMSAxMC42NjggMjcuOTE2IDggOCAwIDAgMCAtMi42NjggNS45NTl2MTQuMTJoLTI5NnYtMjAuMjlhOCA4IDAgMCAwIC0zLjk4OC02LjkyMnptLTIwLjAxMiA1MS4yMTJhOC4wMDkgOC4wMDkgMCAwIDEgOC04aDMyMGE4LjAwOSA4LjAwOSAwIDAgMSA4IDh2OGgtMzM2eiIvPjxwYXRoIGQ9Im0yODAgMzg0aC05NmE4IDggMCAwIDAgLTggOHY2NGE4IDggMCAwIDAgOCA4aDk2YTggOCAwIDAgMCA4LTh2LTY0YTggOCAwIDAgMCAtOC04em0tOCA2NGgtODB2LTQ4aDgweiIvPjxwYXRoIGQ9Im0zNjAgNDY0aDk2YTggOCAwIDAgMCA4LTh2LTY0YTggOCAwIDAgMCAtOC04aC05NmE4IDggMCAwIDAgLTggOHY2NGE4IDggMCAwIDAgOCA4em04LTY0aDgwdjQ4aC04MHoiLz48cGF0aCBkPSJtMjI0IDEzNmEzMi4wMzYgMzIuMDM2IDAgMCAwIDMyLTMyIDggOCAwIDAgMCAtMTYgMCAxNiAxNiAwIDAgMSAtMzIgMCA4IDggMCAwIDAgLTE2IDAgMzIuMDM2IDMyLjAzNiAwIDAgMCAzMiAzMnoiLz48cGF0aCBkPSJtMTI4IDEyOGE4IDggMCAwIDAgMCAxNiAzMiAzMiAwIDAgMCAwLTY0IDggOCAwIDAgMCAwIDE2IDE2IDE2IDAgMCAxIDAgMzJ6Ii8+PC9zdmc+" />
-              <h1 class="display-2"><span>#</span>Welcome to the best place to find reviews for movies<span>!</span></h1>
-            </div>
+        <div class="col-lg-10 align-items-center">
+          <div id="headingGroup" class="text-white text-center d-lg-block mt-5">
+              <img class="img-fluid " id="redchairs" src="{% static 'imgs/red-chairs.jpg' %}" alt="">
           </div>
         </div>
       </div>
-      <div class="row align-items-center content">
-          <div class="col-md-6 text-center">
-            <div class="row justify-content-center">
-              <div class="col-10 col-lg-8 blurb mb-5 mb-md-0">
-                  <h2>MUSEUM OF CANDY</h2>
-                  <img class="d-none d-lg-inline" src="imgs/lolli_icon.png" alt="">
-                  <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, iste molestiae beatae, maiores deserunt in voluptatibus aspernatur architecto excepturi delectus soluta? Ipsa, deleniti dolorem hic consequatur repellat eveniet quidem voluptate necessitatibus dolorum delectus minus vitae, ut, veritatis sint ipsum magnam autem nam ex deserunt debitis eaque ratione! Nobis, quidem assumenda.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-              <img src="imgs/gumball.png" alt="" class="img-fluid">
-            </div>
-        </div>
-        <div class="row align-items-center content">
-            <div class="col-md-6 order-2 order-md-1">
-              <img src="imgs/sprinkles.png" alt="" class="img-fluid">
-            </div>
-            <div class="col-md-6 text-center order-1 order-md-2">
-              <div class="row justify-content-center">
-                <div class="col-10 col-lg-8 blurb mb-5 mb-md-0">
-                    <h2>MUSEUM OF CANDY</h2>
-                    <img class="d-none d-lg-inline" src="imgs/lolli_icon.png" alt="">
-                    <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque, iste molestiae beatae, maiores deserunt in voluptatibus aspernatur architecto excepturi delectus soluta? Ipsa, deleniti dolorem hic consequatur repellat eveniet quidem voluptate necessitatibus dolorum delectus minus vitae, ut, veritatis sint ipsum magnam autem nam ex deserunt debitis eaque ratione! Nobis, quidem assumenda.</p>
-                </div>
-              </div>
-            </div>
-          </div>
     </section>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script>
-        $(function () {
-            $(document).scroll(function () {
-                var $nav = $("#mainNavbar");
-                $nav.toggleClass("scrolled", $(this).scrollTop() > $nav.height());
-            });
-        });
-    </script>
-  </body>
-</html>
+{% endblock %}

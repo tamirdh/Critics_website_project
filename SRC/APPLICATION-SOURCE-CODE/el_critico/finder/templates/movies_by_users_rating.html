@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}Top Movies{% endblock %}
+{% block content %}
+{% load static %}
+
 Here are the reviews for movies that are popular according to the audience<br>
 Found {{ reviews_list |length }} reviews <br>
 <ul>
@@ -16,5 +15,5 @@ Found {{ reviews_list |length }} reviews <br>
 </li>
     {% endfor %}
 </ul>
-</body>
-</html>
+
+{% endblock %}
