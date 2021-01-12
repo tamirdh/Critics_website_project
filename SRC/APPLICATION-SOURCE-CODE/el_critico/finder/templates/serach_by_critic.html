@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Search by critic{% endblock %}
+{% block content %}
+{% load static %}
+
+        <section class="container-fluid mx-2 mx-lg-10">
+            <div class="row align-items-center">
+            <div class= "col-sm-5"></div>
+              <div class="col-sm-2 align-items-center">
+                <h1 id="headingGroup" class="text-white d-lg-block mt-5">Search by critic</h1>
+                <form class="form my-2 my-lg-0">
+                
+                    <label class="radio_cont text-white">Search critic's reviews
+                        <input type="radio" checked="checked" name="radio">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label class="radio_cont text-white">Search critic's stats
+                        <input type="radio" name="radio">
+                        <span class="checkmark"></span>
+                    </label>
+                    <input class="form-control mr-sm-2" type="search" placeholder="Insert critic's name" aria-label="Search">
+                    <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3" type="submit">SEARCH</button>
+                </form>
+              </div>
+              <div class= "col-sm-5"></div>
+            </div>
+          </section>
+{% endblock %}
+
+    
