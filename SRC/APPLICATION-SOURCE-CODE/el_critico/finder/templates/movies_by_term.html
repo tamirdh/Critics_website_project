@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}el-critico reviews DB{% endblock %}
+{% block content %}
+{% load static %}
 Here are the reviews for movies that the review headline or summary had a similar phrase to: {{ phrase }}<br>
 Found {{ reviews_list |length }} reviews <br>
 <ul>
@@ -16,5 +14,4 @@ Found {{ reviews_list |length }} reviews <br>
         </li>
     {% endfor %}
 </ul>
-</body>
-</html>
+{% endblock %}
