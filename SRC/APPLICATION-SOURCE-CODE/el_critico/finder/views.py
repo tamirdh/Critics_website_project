@@ -23,6 +23,12 @@ class HomePage(View):
         return render(request, self.template_name)
 
 
+class SearchByCritic(View):
+    template_name = 'serach_by_critic.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
 # query 1- reviews by critics
 class ReviewsByCritic(ListView):
     template_name = 'reviews_by_critic.html'
@@ -36,7 +42,7 @@ class ReviewsByCritic(ListView):
             cursor.execute(self.query, (new_critic_name,))
             rows = cursor.fetchall()
             if not rows:
-                return render(request, 'no_results.html')
+                return render(request, 'no_results.html', {"phrase": critic_name})
         return render(request, self.template_name, {"reviews_list": rows, "critic": critic_name})
 
 
@@ -51,7 +57,7 @@ class PopularMoviesUsers(ListView):
             cursor.execute(self.query)
             rows = cursor.fetchall()
             if not rows:
-                return render(request, 'no_results.html')
+                return render(request, 'no_results.html', {"phrase": "Popular movies"})
         return render(request, self.template_name, {"reviews_list": rows})
 
 
@@ -66,7 +72,7 @@ class PopularMoviesCritics(ListView):
             cursor.execute(self.query)
             rows = cursor.fetchall()
             if not rows:
-                return render(request, 'no_results.html')
+                return render(request, 'no_results.html', {"phrase": "Critics picks"})
         return render(request, self.template_name, {"reviews_list": rows})
 
 
@@ -82,7 +88,7 @@ class KeyWordReview(ListView):
             cursor.execute(self.query, (term,))
             rows = cursor.fetchall()
             if not rows:
-                return render(request, 'no_results.html')
+                return render(request, 'no_results.html', {"phrase": term})
         return render(request, self.template_name, {"reviews_list": rows, "phrase": term})
 
 
@@ -98,7 +104,7 @@ class MoviesPicked(ListView):
             cursor.execute(self.query, (critic,))
             row = cursor.fetchone()
             if not row:
-                return render(request, 'no_results.html')
+                return render(request, 'no_results.html', {"phrase": critic})
         return render(request, self.template_name, {"critic_name": row[0], "count": row[2], "total": row[1]})
 
 
@@ -114,7 +120,7 @@ class MoviesPickedGenre(ListView):
             cursor.execute(self.query, (category_name,))
             rows = cursor.fetchall()
             if not rows:
-                return render(request, 'no_results.html')
+                return render(request, 'no_results.html', {"phrase": category_name})
         return render(request, self.template_name, {"reviews_list": rows})
 
 
@@ -128,5 +134,5 @@ class GenreUsersStats(ListView):
             cursor.execute(self.query)
             rows = cursor.fetchall()
             if not rows:
-                return render(request, 'no_results.html')
+                return render(request, 'no_results.html', {"phrase": "User stats"})
         return render(request, self.template_name, {"reviews_list": rows})

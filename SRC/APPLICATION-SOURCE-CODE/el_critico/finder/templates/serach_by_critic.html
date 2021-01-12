@@ -9,23 +9,43 @@
             <div class= "col-sm-5"></div>
               <div class="col-sm-2 align-items-center">
                 <h1 id="headingGroup" class="text-white d-lg-block mt-5">Search by critic</h1>
-                <form class="form my-2 my-lg-0">
-                
+
+                <form id="critic_form" class="form my-2 my-lg-0" method="get" action="">
                     <label class="radio_cont text-white">Search critic's reviews
-                        <input type="radio" checked="checked" name="radio">
+                        <input id="rev" type="radio" checked="checked" name="radio">
                         <span class="checkmark"></span>
                     </label>
                     <label class="radio_cont text-white">Search critic's stats
-                        <input type="radio" name="radio">
+                        <input id="stats" type="radio" name="radio">
                         <span class="checkmark"></span>
                     </label>
-                    <input class="form-control mr-sm-2" type="search" placeholder="Insert critic's name" aria-label="Search">
+                    <input name="term" class="form-control mr-sm-2" type="search" placeholder="Insert critic's name" aria-label="Search">
                     <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3" type="submit">SEARCH</button>
                 </form>
+
               </div>
               <div class= "col-sm-5"></div>
             </div>
-          </section>
-{% endblock %}
 
-    
+            <script>
+
+              document.getElementById("critic_form").onsubmit = function () {
+                var form = document.forms.critic_form;
+                var formData = new FormData(form);
+                var search_term = formData.get('term');
+                alert(search_term);
+                if (document.getElementById('rev').checked) {
+                  var url_mask = "{% url 'critic_revs' critic=12345 %}".replace(/12345/,search_term);
+                  document.getElementById("critic_form").action = url_mask;
+                }
+                else if (document.getElementById('stats').checked) {
+                  var url_mask = "{% url 'critic_stats' critic=12345 %}".replace(/12345/,search_term);
+                  document.getElementById("critic_form").action = url_mask;
+                }
+              };
+            </script>
+
+          </section>
+
+
+{% endblock %}

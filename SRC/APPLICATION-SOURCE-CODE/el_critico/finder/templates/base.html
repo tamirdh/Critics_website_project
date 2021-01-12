@@ -16,7 +16,7 @@
 
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/app.css' %}" >
-    <link rel="stylesheet" href="{% static 'radio.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/radio.css' %}" >
 
     <title>{% block title %}{% endblock %}</title>
   </head>
@@ -46,7 +46,7 @@
             <a href="{% url 'finder_critics' %}" class="nav-link">CRITICS PICKS</a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">CONTACT US</a>
+            <a href="{% url 'critic_search' %}" class="nav-link">CRITIC SEARCH</a>
           </li>
           <li class="nav-item">
             <a href="" class="nav-link">LINK</a>
