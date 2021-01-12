@@ -10,7 +10,7 @@
               <div class="col-sm-2 align-items-center">
                 <h1 id="headingGroup" class="text-white d-lg-block mt-5">Search by critic</h1>
 
-                <form id="critic_form" class="form my-2 my-lg-0" method="get" action="">
+                <form id="critic_form" class="form my-2 my-lg-0" method="get" action="" autocomplete="off">
                     <label class="radio_cont text-white">Search critic's reviews
                         <input id="rev" type="radio" checked="checked" name="radio">
                         <span class="checkmark"></span>
@@ -28,12 +28,14 @@
             </div>
 
             <script>
+              const critics_names = ["A. O. Scott", "Manohla Dargis", "Stephen Holden", "Renata Adler", "Mordaunt Hall", "Thomas M. Pryor", "Eugene Archer", "Donal J. Henahan", "Nora Sayre", "D. J. R. Bruckner", "Caryn James", "Harold C. Schonberg", "Tom Buckley", "Stanley Kauffman", "Andre Sennwald", "Vincent Canby", "Dave Kehr", "Dana Stevens", "B. R. Crisler", "Hilton Kramer", "Michael Stern", "Bosley Crowther", "Ned Martel", "Theodore Strauss", "Richard Eder", "Janet Maslin", "Howard Thompson", "Anita Gates", "John T. McManus", "Lawrence Van Gelder", "Walter Goodman", "Elvis Mitchell", "A. H. Weiler", "Roger Greenspun", "Frank S. Nugent", "Matt Zoller Seitz", "Neil Genzlinger", "Andy Webster", "Jeannette Catsoulis", "Nathan Lee", "Kevin Cahillane", "Laura Kern", "Anna Kisselgoff", "C. Hooper Trask", "Ernest Marshall", "Herbert L. Matthews", "Herbert Mitgang", "Jennifer Dunning", "John Corry", "Jon Pareles", "Nina Darnton", "Patricia S. McCormick", "Peter M. Nichols", "Richard Bernstein", "Richard F. Shepard", "Richard W. Nason", "Robert Alden", "Charles Morgan", "Dan Sullivan", "Harry Gilroy", "Julie Salamon", "Morris Gilbert", "W. L. Middleton", "Harry T. Smith", "David DeWitt", "Ben Brantley", "Carina Chocano", "Daniel M. Gold", "Felicity Barringer", "Holcomb B. Noble", "Jack Gould", "Mike Hale", "Paul Brunick", "Peter Kihss", "Rachel Saltz", "Suzanne O'Connor", "Victor Navasky", "Wayne King", "Nicolas Rapold", "Miriam Bale", "Nicole Herrington", "Ben Kenigsberg", "Teo Bugbee", "Devika Girish", "Glenn Kenny", "A.o. Scott", "Chris Azzopardi", "Lovia Gyarkye", "Robert Daniels", "Kyle Turner", "Natalia Winkelman", "Kristen Yoonsoo Kim", "Maya Phillips", "Amy Nicholson", "Wesley Morris", "Helen T. Verongos", "Calum Marsh", "Elisabeth Vincentelli", "Lisa Kennedy", "Bilal Qureshi", "Jennifer Szalai", "Scott Tobias", "Jessica Kiang", "Jason Bailey", "Jon Caramanica", "Brian Seibert", "Ken Jaworowski", "Aisha Harris", "Candice Frederick", "Chris Vognar", "Jason Zinoman", "Bilge Ebiri", "Sean T. Collins", "Karen Han", "Martin Tsai", "Monica Castillo", "Gene Seymour", "Gia Kourlas", "John Williams", "Roberta Smith", "Geoffrey O’brien", "A. o. Scott", "By A. o. Scott", "By A. o. Scott", "John Anderson", "Michael Kinsley", "Ella Taylor", "By . A. O. Scott"]
+
+
 
               document.getElementById("critic_form").onsubmit = function () {
                 var form = document.forms.critic_form;
                 var formData = new FormData(form);
                 var search_term = formData.get('term');
-                alert(search_term);
                 if (document.getElementById('rev').checked) {
                   var url_mask = "{% url 'critic_revs' critic=12345 %}".replace(/12345/,search_term);
                   document.getElementById("critic_form").action = url_mask;
