@@ -16,7 +16,9 @@
 
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/app.css' %}" >
-    <link rel="stylesheet" href="{% static 'css/radio.css' %}" >
+    
+    
+    {% block styling %}{% endblock %}
 
     <title>{% block title %}{% endblock %}</title>
   </head>
