@@ -65,12 +65,11 @@ class PopularMoviesUsers(ListView):
             rows = cursor.fetchall()
             if not rows:
                 return render(request, 'no_results.html', {"phrase": "Popular movies"})
-        length = len(rows)
         paginator = Paginator(rows, 20)
         page = request.GET.get('page')
 
         rows = paginator.get_page(page)
-        return render(request, self.template_name, {"reviews_list": rows, "total_amount": length})
+        return render(request, self.template_name, {"reviews_list": rows})
 
 
 # query 3- critics picks
@@ -85,6 +84,10 @@ class PopularMoviesCritics(ListView):
             rows = cursor.fetchall()
             if not rows:
                 return render(request, 'no_results.html', {"phrase": "Critics picks"})
+        paginator = Paginator(rows, 20)
+        page = request.GET.get('page')
+
+        rows = paginator.get_page(page)
         return render(request, self.template_name, {"reviews_list": rows})
 
 
