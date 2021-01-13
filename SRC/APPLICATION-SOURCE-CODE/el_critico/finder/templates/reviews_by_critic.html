@@ -20,8 +20,8 @@
             <p class="lead">Found {{ reviews_list |length }} reviews</p>
             <ul>
                 {% for review in reviews_list %}
-                <div id ="resblock">
-                 <span>Movie:</span> {{ review.0 }}<br><span>review by:</span> {{ review.1 }}<br><span>review summary:</span> {{ review.2 }}<br>
+                <div id ="resblock" class= "border rounded">
+                 <span>Movie:</span> {{ review.0 }}<br><span>Review by:</span> {{ review.1 }}<br><span>Review summary:</span> {{ review.2 }}<br>
                     <a href={{ review.3 }}>Original review</a>
                     <br>
                 </div>
