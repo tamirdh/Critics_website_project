@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 {% block styling %}
+{% load static %}
 <link rel="stylesheet" href="{% static 'css/radio.css' %}" >
+<link rel="stylesheet" href="{% static 'css/autocomplete.css' %}">
 {% endblock %}
 
 {% block title %}Search by critic{% endblock %}
@@ -22,7 +24,9 @@
                         <input id="stats" type="radio" name="radio">
                         <span class="checkmark"></span>
                     </label>
-                    <input name="term" class="form-control mr-sm-2" type="search" placeholder="Insert critic's name" aria-label="Search">
+                    <div class="autocomplete">
+                    <input id="myInput" name="term" class="form-control mr-sm-2" type="search" placeholder="Insert critic's name" aria-label="Search">
+                    </div>
                     <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3" type="submit">SEARCH</button>
                 </form>
 
@@ -31,8 +35,105 @@
             </div>
 
             <script>
-              const critics_names = ["A. O. Scott", "Manohla Dargis", "Stephen Holden", "Renata Adler", "Mordaunt Hall", "Thomas M. Pryor", "Eugene Archer", "Donal J. Henahan", "Nora Sayre", "D. J. R. Bruckner", "Caryn James", "Harold C. Schonberg", "Tom Buckley", "Stanley Kauffman", "Andre Sennwald", "Vincent Canby", "Dave Kehr", "Dana Stevens", "B. R. Crisler", "Hilton Kramer", "Michael Stern", "Bosley Crowther", "Ned Martel", "Theodore Strauss", "Richard Eder", "Janet Maslin", "Howard Thompson", "Anita Gates", "John T. McManus", "Lawrence Van Gelder", "Walter Goodman", "Elvis Mitchell", "A. H. Weiler", "Roger Greenspun", "Frank S. Nugent", "Matt Zoller Seitz", "Neil Genzlinger", "Andy Webster", "Jeannette Catsoulis", "Nathan Lee", "Kevin Cahillane", "Laura Kern", "Anna Kisselgoff", "C. Hooper Trask", "Ernest Marshall", "Herbert L. Matthews", "Herbert Mitgang", "Jennifer Dunning", "John Corry", "Jon Pareles", "Nina Darnton", "Patricia S. McCormick", "Peter M. Nichols", "Richard Bernstein", "Richard F. Shepard", "Richard W. Nason", "Robert Alden", "Charles Morgan", "Dan Sullivan", "Harry Gilroy", "Julie Salamon", "Morris Gilbert", "W. L. Middleton", "Harry T. Smith", "David DeWitt", "Ben Brantley", "Carina Chocano", "Daniel M. Gold", "Felicity Barringer", "Holcomb B. Noble", "Jack Gould", "Mike Hale", "Paul Brunick", "Peter Kihss", "Rachel Saltz", "Suzanne O'Connor", "Victor Navasky", "Wayne King", "Nicolas Rapold", "Miriam Bale", "Nicole Herrington", "Ben Kenigsberg", "Teo Bugbee", "Devika Girish", "Glenn Kenny", "A.o. Scott", "Chris Azzopardi", "Lovia Gyarkye", "Robert Daniels", "Kyle Turner", "Natalia Winkelman", "Kristen Yoonsoo Kim", "Maya Phillips", "Amy Nicholson", "Wesley Morris", "Helen T. Verongos", "Calum Marsh", "Elisabeth Vincentelli", "Lisa Kennedy", "Bilal Qureshi", "Jennifer Szalai", "Scott Tobias", "Jessica Kiang", "Jason Bailey", "Jon Caramanica", "Brian Seibert", "Ken Jaworowski", "Aisha Harris", "Candice Frederick", "Chris Vognar", "Jason Zinoman", "Bilge Ebiri", "Sean T. Collins", "Karen Han", "Martin Tsai", "Monica Castillo", "Gene Seymour", "Gia Kourlas", "John Williams", "Roberta Smith", "Geoffrey O’brien", "A. o. Scott", "By A. o. Scott", "By A. o. Scott", "John Anderson", "Michael Kinsley", "Ella Taylor", "By . A. O. Scott"]
+              const critics_names = ["Wesley Morris", "Teo Bugbee", "Stephen Holden", "Sean T. Collins", "Scott Tobias", "Robert Daniels", "Rachel Saltz", "Paul Brunick", "Nicole Herrington", "Nicolas Rapold", "Neil Genzlinger", "Nathan Lee", "Natalia Winkelman", "Monica Castillo", "Miriam Bale", "Mike Hale", "Maya Phillips", "Manohla Dargis", "Lovia Gyarkye", "Laura Kern", "Kyle Turner", "Kristen Yoonsoo Kim", "Ken Jaworowski", "Karen Han", "Jon Caramanica", "John Williams", "Jessica Kiang", "Jennifer Szalai", "Jeannette Catsoulis", "Jason Zinoman", "Jason Bailey", "Janet Maslin", "Helen T. Verongos", "Glenn Kenny", "Geoffrey O’brien", "Elisabeth Vincentelli", "Devika Girish", "David DeWitt", "Daniel M. Gold", "Chris Vognar", "Chris Azzopardi", "Candice Frederick", "By A. o. Scott", "By A. o. Scott", "By . A. O. Scott", "Bilge Ebiri", "Bilal Qureshi", "Ben Kenigsberg", "Anita Gates", "Andy Webster", "Amy Nicholson", "Aisha Harris", "A.o. Scott", "A. o. Scott", "A. O. Scott"];
 
+              function autocomplete(inp, arr) {
+                var currentFocus;
+                /*execute a function when someone writes in the text field:*/
+                inp.addEventListener("input", function(e) {
+                  var a, b, i, val = this.value;
+                  /*close any already open lists of autocompleted values*/
+                  closeAllLists();
+                  if (!val) {return false;}
+                  currentFocus = -1;
+                  /*create a DIV element that will contain the items (values):*/
+                  a = document.createElement("DIV");
+                  a.setAttribute("id", this.id + "autocomplete-list");
+                  a.setAttribute("class", "autocomplete-items");
+                  /*append the DIV element as a child of the autocomplete container:*/
+                  this.parentNode.appendChild(a);
+                  /*for each item in the array...*/
+                  for (i = 0; i < arr.length; i++) {
+                    /*check if the item starts with the same letters as the text field value:*/
+                    if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                      /*create a DIV element for each matching element:*/
+                      b = document.createElement("DIV");
+                      /*make the matching letters bold:*/
+                      b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                      b.innerHTML += arr[i].substr(val.length);
+                      /*insert a input field that will hold the current array item's value:*/
+                      b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                      /*execute a function when someone clicks on the item value (DIV element):*/
+                          b.addEventListener("click", function(e) {
+                          /*insert the value for the autocomplete text field:*/
+                          inp.value = this.getElementsByTagName("input")[0].value;
+                          /*close the list of autocompleted values,
+                          (or any other open lists of autocompleted values:*/
+                          closeAllLists();
+                });
+                a.appendChild(b);
+              }
+            }
+          });
+
+          /*execute a function presses a key on the keyboard:*/
+          inp.addEventListener("keydown", function(e) {
+              var x = document.getElementById(this.id + "autocomplete-list");
+              if (x) x = x.getElementsByTagName("div");
+              if (e.keyCode == 40) {
+                /*If the arrow DOWN key is pressed,
+                increase the currentFocus variable:*/
+                currentFocus++;
+                /*and and make the current item more visible:*/
+                addActive(x);
+              } else if (e.keyCode == 38) { //up
+                /*If the arrow UP key is pressed,
+                decrease the currentFocus variable:*/
+                currentFocus--;
+                /*and and make the current item more visible:*/
+                addActive(x);
+              } else if (e.keyCode == 13) {
+                /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                e.preventDefault();
+                if (currentFocus > -1) {
+                  /*and simulate a click on the "active" item:*/
+                  if (x) x[currentFocus].click();
+                }
+              }
+          });
+          function addActive(x) {
+            /*a function to classify an item as "active":*/
+            if (!x) return false;
+            /*start by removing the "active" class on all items:*/
+            removeActive(x);
+            if (currentFocus >= x.length) currentFocus = 0;
+            if (currentFocus < 0) currentFocus = (x.length - 1);
+            /*add class "autocomplete-active":*/
+            x[currentFocus].classList.add("autocomplete-active");
+          }
+          function removeActive(x) {
+            /*a function to remove the "active" class from all autocomplete items:*/
+            for (var i = 0; i < x.length; i++) {
+              x[i].classList.remove("autocomplete-active");
+            }
+          }
+          function closeAllLists(elmnt) {
+            /*close all autocomplete lists in the document,
+            except the one passed as an argument:*/
+            var x = document.getElementsByClassName("autocomplete-items");
+            for (var i = 0; i < x.length; i++) {
+              if (elmnt != x[i] && elmnt != inp) {
+              x[i].parentNode.removeChild(x[i]);
+            }
+          }
+          }
+          /*execute a function when someone clicks in the document:*/
+          document.addEventListener("click", function (e) {
+            closeAllLists(e.target);
+          });
+          }
+
+          autocomplete(document.getElementById("myInput"), critics_names);
 
 
               document.getElementById("critic_form").onsubmit = function () {
