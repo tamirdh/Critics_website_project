@@ -106,7 +106,7 @@ class KeyWordReview(ListView):
 
     def get(self, request, *args, **kwargs):
         with connection.cursor() as cursor:
-            term = request.GET.get("phrase", "")
+            term = kwargs['phrase']
             cursor.execute(self.query, (term,))
             rows = cursor.fetchall()
             if not rows:

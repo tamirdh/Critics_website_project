@@ -68,10 +68,20 @@
         </ul>
 
         <ul class="navbar-nav ml-auto">
-          <form class="form-inline my-2 my-lg-0" action="{% url 'finder_phrase' %}" method="get">
+          <form id="search_form" class="form-inline my-2 my-lg-0" action="{% url 'finder_phrase' phrase=12345 %}" method="get">
             <input id="term" name="phrase" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
           </form>
+
+          <script>
+            document.getElementById("search_form").onsubmit = function() {
+              var form = document.forms.search_form;
+              var formData = new FormData(form);
+              var search_term = formData.get('phrase');
+              var url_mask = "{% url 'finder_phrase' phrase=12345 %}".replace(/12345/,search_term);
+              document.getElementById("search_form").action = url_mask;
+            };
+          </script>
         </ul>
       </div>
     </nav>
