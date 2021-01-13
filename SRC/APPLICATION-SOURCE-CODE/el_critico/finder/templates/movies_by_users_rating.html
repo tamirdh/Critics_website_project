@@ -15,23 +15,23 @@
 
             <div class="dj_pang">
               {% if reviews_list.has_previous %}
-                <a href="?page=1"><<</a>
-                <a href="?page={{ reviews_list.previous_page_number }}"> <</a>
+                <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3"><a class="text-white" href="?page=1"><<</a></button>
+                <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3"><a class="text-white" href="?page={{ reviews_list.previous_page_number }}"> <</a></button>
 
               {% endif %}
 
               {% for num in reviews_list.paginator.page_range %}
                   {% if reviews_list.number == num %}
-                      <strong>{{ num }}</strong>
+                      <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3"><strong class="text-white">{{ num }}</strong></button>
                   {% elif num > reviews_list.number|add:'-3' and num < reviews_list.number|add:'3' %}
-                      <a href="?page={{ num }}">{{ num }}</a>
+                      <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3"><a class="text-white" href="?page={{ num }}">{{ num }}</a></button>
                       {% endif %}
                     {% endfor %}
 
 
               {% if reviews_list.has_next %}
-                <a href="?page={{ reviews_list.next_page_number }}">> </a>
-                <a href="?page={{ reviews_list.paginator.num_pages }}">>></a>
+                <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3"><a class="text-white" href="?page={{ reviews_list.next_page_number }}">> </a></button>
+                <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3"><a class="text-white" href="?page={{ reviews_list.paginator.num_pages }}">>></a></button>
               {% endif %}
               </div>
 
