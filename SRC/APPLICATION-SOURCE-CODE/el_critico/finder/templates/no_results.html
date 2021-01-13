@@ -3,5 +3,17 @@
 {% block title %}el-critico reviews DB{% endblock %}
 {% block content %}
 {% load static %}
-Sorry, no results came back for {{ phrase }}. Check again with a different query
+<section class="container-fluid px-0 pb-5">
+    <div class="row align-items-center">
+      <div class ="col-lg-1">
+      </div>
+      <div class="col-lg-10 align-items-center">
+        <div id="headingGroup" class="text-white text-center d-lg-block mt-5">
+            <h1 class="display-3">Sorry, no results came back for <span>{{ phrase }}</span>. Check again with a different query<span>!</span></h1>
+        </div>
+      </div>
+      <div class ="col-lg-1">
+      </div>
+    </div>
+</section>
 {% endblock %}
