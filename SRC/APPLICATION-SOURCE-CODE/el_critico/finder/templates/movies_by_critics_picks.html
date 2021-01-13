@@ -9,28 +9,24 @@
       <div class="col-lg-10 align-items-center">
         <div id="headingGroup" class="text-white text-center d-lg-block mt-5">
             <h1 class="display-3"><span>#</span>Here are the reviews for movies that are recommended by New York Times critics</h1>
-            <p class="lead">Displaying {{ reviews_list |length }} reviews out of {{ reviews_list.paginator.count }} </p>
+            <p class="lead">Displaying {{ reviews_list |length }} reviews out of {{ reviews_list.paginator.count }}</p>
             {% load static %}
             <span class="display-4">#</span><img id="nyt" src="{% static 'imgs/NYT.png' %}" alt="">
             <div class="dj_pang">
               {% if reviews_list.has_previous %}
-                <a href="?page=1"><<</a>
-                <a href="?page={{ reviews_list.previous_page_number }}"> <</a>
-
+                <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3"><a class="text-white" href="?page=1"><<</a></button>
+                <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3"><a class="text-white" href="?page={{ reviews_list.previous_page_number }}"> <</a></button>
               {% endif %}
-
               {% for num in reviews_list.paginator.page_range %}
                   {% if reviews_list.number == num %}
-                      <strong>{{ num }}</strong>
+                      <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3 active">{{ num }}</button>
                   {% elif num > reviews_list.number|add:'-3' and num < reviews_list.number|add:'3' %}
-                      <a href="?page={{ num }}">{{ num }}</a>
+                      <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3"><a class="text-white" href="?page={{ num }}">{{ num }}</a></button>
                       {% endif %}
                     {% endfor %}
-
-
               {% if reviews_list.has_next %}
-                <a href="?page={{ reviews_list.next_page_number }}">> </a>
-                <a href="?page={{ reviews_list.paginator.num_pages }}">>></a>
+                <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3"><a class="text-white" href="?page={{ reviews_list.next_page_number }}">> </a></button>
+                <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3"><a class="text-white" href="?page={{ reviews_list.paginator.num_pages }}">>></a></button>
               {% endif %}
               </div>
             <ul>

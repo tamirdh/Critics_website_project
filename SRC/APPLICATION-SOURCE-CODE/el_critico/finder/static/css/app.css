@@ -99,3 +99,7 @@ body {
 #genres:hover {
 	color: #5acac1;
 }
+
+#search_btn:active {
+    background-color: #5acac1;
+}

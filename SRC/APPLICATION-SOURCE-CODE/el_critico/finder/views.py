@@ -50,6 +50,11 @@ class ReviewsByCritic(ListView):
             rows = cursor.fetchall()
             if not rows:
                 return render(request, 'no_results.html', {"phrase": critic_name})
+
+        paginator = Paginator(rows, 20)
+        page = request.GET.get('page')
+        rows = paginator.get_page(page)
+
         return render(request, self.template_name, {"reviews_list": rows, "critic": critic_name})
 
 
@@ -65,10 +70,11 @@ class PopularMoviesUsers(ListView):
             rows = cursor.fetchall()
             if not rows:
                 return render(request, 'no_results.html', {"phrase": "Popular movies"})
+
         paginator = Paginator(rows, 20)
         page = request.GET.get('page')
-
         rows = paginator.get_page(page)
+
         return render(request, self.template_name, {"reviews_list": rows})
 
 
@@ -84,10 +90,11 @@ class PopularMoviesCritics(ListView):
             rows = cursor.fetchall()
             if not rows:
                 return render(request, 'no_results.html', {"phrase": "Critics picks"})
+
         paginator = Paginator(rows, 20)
         page = request.GET.get('page')
-
         rows = paginator.get_page(page)
+
         return render(request, self.template_name, {"reviews_list": rows})
 
 
@@ -104,6 +111,11 @@ class KeyWordReview(ListView):
             rows = cursor.fetchall()
             if not rows:
                 return render(request, 'no_results.html', {"phrase": term})
+
+        paginator = Paginator(rows, 20)
+        page = request.GET.get('page')
+        rows = paginator.get_page(page)
+
         return render(request, self.template_name, {"reviews_list": rows, "phrase": term})
 
 
@@ -136,6 +148,9 @@ class MoviesPickedGenre(ListView):
             rows = cursor.fetchall()
             if not rows:
                 return render(request, 'no_results.html', {"phrase": category_name})
+        paginator = Paginator(rows, 20)
+        page = request.GET.get('page')
+        rows = paginator.get_page(page)
         return render(request, self.template_name, {"reviews_list": rows})
 
 
