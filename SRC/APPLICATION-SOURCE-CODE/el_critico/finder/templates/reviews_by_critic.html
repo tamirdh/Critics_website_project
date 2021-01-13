@@ -1,7 +1,10 @@
 
 {% extends 'base.html' %}
 
-{% block styling %}{% endblock %}
+{% block styling %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/boxstyle.css' %}" >
+{% endblock %}
 
 {% block title %}Search by critic{% endblock %}
 {% block content %}
@@ -17,7 +20,7 @@
             <p class="lead">Found {{ reviews_list |length }} reviews</p>
             <ul>
                 {% for review in reviews_list %}
-                <li>
+                <li id ="resblock">
                  Movie: {{ review.0 }}<br>review by: {{ review.1 }}<br>review summary: {{ review.2 }}<br>
                     <a href={{ review.3 }}>Original review</a>
                     <br>
