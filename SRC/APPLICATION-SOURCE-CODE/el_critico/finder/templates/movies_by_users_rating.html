@@ -11,7 +11,7 @@
       <div class="col-lg-10 align-items-center">
         <div id="headingGroup" class="text-white text-center d-lg-block mt-5">
             <h1 class="display-3"><span>#</span>Here are the reviews for movies that are popular according to the audience</h1>
-            <p class="lead">Displaying {{ reviews_list |length }} reviews out of {{ reviews_list.paginator.count }}</p>
+            <p class="lead">Dislaying {{ reviews_list.start_index }} - {{ reviews_list.end_index }} reviews out of {{ reviews_list.paginator.count }}</p>
 
             <div class="dj_pang">
               {% if reviews_list.has_previous %}

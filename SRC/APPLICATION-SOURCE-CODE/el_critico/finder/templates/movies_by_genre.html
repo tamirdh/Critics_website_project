@@ -6,8 +6,17 @@
       </div>
       <div class="col-lg-10 align-items-center">
         <div id="headingGroup" class="text-white text-center d-lg-block mt-5">
-            <h1 class="display-3"><span>#</span>Action</h1>
-            <p class="lead">Displaying {{ reviews_list |length }} reviews out of {{ reviews_list.paginator.count }}</p>
+
+          <script>
+            var pathname = window.location.pathname;
+            var res = pathname.split("/");
+            var category = res[res.length - 1].replace("%20", " ");
+            </script>
+
+            <h1 class="display-3"><span>#</span><script>document.write(category)</script></h1>
+
+
+            <p class="lead">Dislaying {{ reviews_list.start_index }} - {{ reviews_list.end_index }} reviews out of {{ reviews_list.paginator.count }}</p>
             <div class="dj_pang">
               {% if reviews_list.has_previous %}
                 <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3"><a class="text-white" href="?page=1"><<</a></button>
