@@ -12,6 +12,29 @@
         <div id="headingGroup" class="text-white text-center d-lg-block mt-5">
             <h1 class="display-3"><span>#</span>Here are the reviews for movies that are popular according to the audience</h1>
             <p class="lead">Displaying {{ reviews_list |length }} reviews out of {{ total_amount }}</p>
+
+            <div class="dj_pang">
+              {% if reviews_list.has_previous %}
+                <a href="?page=1"><<</a>
+                <a href="?page={{ reviews_list.previous_page_number }}"> <</a>
+
+              {% endif %}
+
+              {% for num in reviews_list.paginator.page_range %}
+                  {% if reviews_list.number == num %}
+                      <strong>{{ num }}</strong>
+                  {% elif num > reviews_list.number|add:'-3' and num < reviews_list.number|add:'3' %}
+                      <a href="?page={{ num }}">{{ num }}</a>
+                      {% endif %}
+                    {% endfor %}
+
+
+              {% if reviews_list.has_next %}
+                <a href="?page={{ reviews_list.next_page_number }}">> </a>
+                <a href="?page={{ reviews_list.paginator.num_pages }}">>></a>
+              {% endif %}
+              </div>
+
             <ul id="review_ul" >
                 {% for review in reviews_list %}
                 <div id ="resblock" class= "border rounded">
