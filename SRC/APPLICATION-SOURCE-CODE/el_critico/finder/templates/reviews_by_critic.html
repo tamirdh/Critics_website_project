@@ -17,7 +17,7 @@
       <div class="col-lg-10 align-items-center">
         <div id="headingGroup" class="text-white text-center d-lg-block mt-5">
             <h1 class="display-3"><span>#</span>Here are the reviews by critics with "{{critic}}" in their name</h1>
-            <p class="lead">Dislaying {{ reviews_list.start_index }} - {{ reviews_list.end_index }} reviews out of {{ reviews_list.paginator.count }}</p>
+            <p class="lead">Displaying {{ reviews_list.start_index }} - {{ reviews_list.end_index }} reviews out of {{ reviews_list.paginator.count }}</p>
             <div class="dj_pang">
               {% if reviews_list.has_previous %}
                 <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3"><a class="text-white" href="?page=1"><<</a></button>
