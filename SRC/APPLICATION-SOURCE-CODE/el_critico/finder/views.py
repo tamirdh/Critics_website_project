@@ -116,7 +116,7 @@ class MoviesPicked(ListView):
 
 # query 6 picks by genres
 class MoviesPickedGenre(ListView):
-    template_name = 'movies_by_critics_picks.html'
+    template_name = 'movies_by_genre.html'
     query = "SELECT Movie.title AS Movie_title, summary, link FROM Review JOIN Movie ON Movie.ID = Review.movie_id " \
             "JOIN Genre on Genre.ID = Movie.category_id WHERE critics_pick = 1 AND category_name=%s"
 

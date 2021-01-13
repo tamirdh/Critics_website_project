@@ -1,0 +1,28 @@
+{% extends 'genre_choice.html' %}
+{% block genre %}
+<section class="container-fluid px-0 pb-5">
+    <div class="row align-items-center">
+      <div class ="col-lg-1">
+      </div>
+      <div class="col-lg-10 align-items-center">
+        <div id="headingGroup" class="text-white text-center d-lg-block mt-5">
+            <h1 class="display-3"><span>#</span>Here are the reviews for movies that are recommended by New York Times critics</h1>
+            <p class="lead">Found {{ reviews_list |length }} reviews</p>
+            {% load static %}
+            <span class="display-4">#</span><img id="nyt" src="{% static 'imgs/NYT.png' %}" alt="">
+            <ul>
+                {% for review in reviews_list %}
+                <div id ="resblock" class= "border rounded">
+                 <span>Movie:</span> {{ review.0 }}<br><span>Review summary:</span> {{ review.1 }}<br>
+                    <a href={{ review.3 }}>Original review</a>
+                    <br>
+                </div>
+                {% endfor %}
+            </ul>
+        </div>
+      </div>
+      <div class ="col-lg-1">
+      </div>
+    </div>
+</section>
+{% endblock %}
