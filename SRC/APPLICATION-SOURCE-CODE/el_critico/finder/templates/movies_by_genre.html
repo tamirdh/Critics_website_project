@@ -6,10 +6,9 @@
       </div>
       <div class="col-lg-10 align-items-center">
         <div id="headingGroup" class="text-white text-center d-lg-block mt-5">
-            <h1 class="display-3"><span>#</span>Here are the reviews for movies that are recommended by New York Times critics</h1>
+            <h1 class="display-3"><span>#</span>{{ request.get_full_path | cut: "http://127.0.0.1:8000/finder/genre-stats/category/" }}</h1>
             <p class="lead">Found {{ reviews_list |length }} reviews</p>
             {% load static %}
-            <span class="display-4">#</span><img id="nyt" src="{% static 'imgs/NYT.png' %}" alt="">
             <ul>
                 {% for review in reviews_list %}
                 <div id ="resblock" class= "border rounded">
