@@ -2,16 +2,31 @@
 
 {% block title %}el-critico reviews DB{% endblock %}
 {% block content %}
-{% load static %}
-
-Here are some movies statistics based on user rating (per category)<br>
-<ol>
-{% for review in reviews_list %}
-<li>
- Category:{{ review.2 }}<br>Average user score:{{ review.0 }}<br>Average number of votes:{{ review.1 }}
-    <br>
-</li>
-    {% endfor %}
-</ol>
-
+<section class="container-fluid px-0 pb-5">
+    <div class="row align-items-center">
+      <div class ="col-lg-1">
+      </div>
+      <div class="col-lg-10 align-items-center">
+        <div id="headingGroup" class="text-white text-center d-lg-block mt-5">
+            <h1 class="display-3"><span>#</span>Here are some movies statistics based on user rating (per category)</h1>
+            <p class="lead">Found {{ reviews_list |length }} reviews</p>
+            <ol>
+                {% for review in reviews_list %}
+                <li id ="resblock" class= "border rounded">
+                    <span>Category:</span> {{ review.2 }}<br>
+                    <span>Average user score:</span> {{ review.0 }}
+                    <img id="userrate" src="data:image/svg+xml;base64,PHN2ZyBpZD0iRmlsbGVkIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHdpZHRoPSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0iI2Y3Y2MzOCI+PHBhdGggZD0ibTI5MC42MSAxMzYtMzQuNjEtMTkuMTMyLTM0LjYxIDE5LjEzMiA2LjYxLTQwLjUyMi0yOC0yOC42OTggMzguNjk1LTUuOTEyIDE3LjMwNS0zNi44NjggMTcuMzA1IDM2Ljg2OCAzOC42OTUgNS45MTItMjggMjguNjk4eiIvPjxwYXRoIGQ9Im0xMzAuNjEgMTY4LTM0LjYxLTE5LjEzMi0zNC42MSAxOS4xMzIgNi42MS00MC41MjItMjgtMjguNjk4IDM4LjY5NS01LjkxMiAxNy4zMDUtMzYuODY4IDE3LjMwNSAzNi44NjggMzguNjk1IDUuOTEyLTI4IDI4LjY5OHoiLz48cGF0aCBkPSJtNDUwLjYxIDE2OC0zNC42MS0xOS4xMzItMzQuNjEgMTkuMTMyIDYuNjEtNDAuNTIyLTI4LTI4LjY5OCAzOC42OTUtNS45MTIgMTcuMzA1LTM2Ljg2OCAxNy4zMDUgMzYuODY4IDM4LjY5NSA1LjkxMi0yOCAyOC42OTh6Ii8+PC9nPjxjaXJjbGUgY3g9IjI1NiIgY3k9IjI0OCIgZmlsbD0iI2Y3ZDFiMiIgcj0iNjQiLz48cGF0aCBkPSJtMTI4IDQ0MGExMjggMTI4IDAgMCAxIDI1NiAwcy01NiA0OC0xMjggNDgtMTI4LTQ4LTEyOC00OHoiIGZpbGw9IiNmN2QxYjIiLz48cGF0aCBkPSJtMzE5LjU4NiA2NC4yNGE4IDggMCAwIDAgLTYuMzc4LTUuMzY4bC0zNC40NzUtNS4yNzItMTUuNDkxLTMzYTggOCAwIDAgMCAtMTQuNDg0IDBsLTE1LjQ5MSAzMy0zNC40NzUgNS4yNjhhOCA4IDAgMCAwIC00LjUxOCAxMy41bDI1LjE4IDI1LjgwOC01Ljk1NCAzNi41MzZhOCA4IDAgMCAwIDExLjc2IDguMjg4bDMwLjc0LTE2Ljk5MSAzMC43NCAxNi45OTFhOCA4IDAgMCAwIDExLjc2NS04LjI5bC01Ljk1OS0zNi41MzcgMjUuMTgtMjUuODA4YTggOCAwIDAgMCAxLjg2LTguMTI1em0tNDEuMzEyIDI1LjY1MWE4IDggMCAwIDAgLTIuMTcgNi44NzVsMy45NTggMjQuMjYyLTIwLjE5Mi0xMS4xNjFhOCA4IDAgMCAwIC03Ljc0IDBsLTIwLjE5MiAxMS4xNjEgMy45NjItMjQuMjYyYTggOCAwIDAgMCAtMi4xNy02Ljg3NWwtMTcuMTMtMTcuNTU0IDIzLjMtMy41NjFhOCA4IDAgMCAwIDYuMDM0LTQuNTA4bDEwLjA2Ni0yMS40NCAxMC4wNjMgMjEuNDRhOCA4IDAgMCAwIDYuMDM0IDQuNTA4bDIzLjMgMy41NjF6Ii8+PHBhdGggZD0ibTE1My4yMDggOTAuODcyLTM0LjQ3NS01LjI3Mi0xNS40OTEtMzNhOCA4IDAgMCAwIC0xNC40ODQgMGwtMTUuNDkxIDMzLTM0LjQ3NSA1LjI3MmE4IDggMCAwIDAgLTQuNTE4IDEzLjVsMjUuMTggMjUuODA4LTUuOTU0IDM2LjUzMmE4IDggMCAwIDAgMTEuNzYgOC4yODhsMzAuNzQtMTYuOTkxIDMwLjc0IDE2Ljk5MWE4IDggMCAwIDAgMTEuNzY1LTguMjlsLTUuOTU5LTM2LjUzNyAyNS4xOC0yNS44MDhhOCA4IDAgMCAwIC00LjUxOC0xMy41em0tMzQuOTM0IDMxLjAxOWE4IDggMCAwIDAgLTIuMTcgNi44NzVsMy45NTggMjQuMjYyLTIwLjE5Mi0xMS4xNjFhOCA4IDAgMCAwIC03Ljc0IDBsLTIwLjE5MiAxMS4xNjEgMy45NjItMjQuMjYyYTggOCAwIDAgMCAtMi4xNy02Ljg3NWwtMTcuMTMtMTcuNTU0IDIzLjMtMy41NjFhOCA4IDAgMCAwIDYuMDM0LTQuNTA4bDEwLjA2Ni0yMS40NCAxMC4wNjMgMjEuNDRhOCA4IDAgMCAwIDYuMDM0IDQuNTA4bDIzLjMgMy41NjF6Ii8+PHBhdGggZD0ibTQ3OS41ODYgOTYuMjRhOCA4IDAgMCAwIC02LjM3OC01LjM2OGwtMzQuNDc1LTUuMjcyLTE1LjQ5MS0zM2E4IDggMCAwIDAgLTE0LjQ4NCAwbC0xNS40OTEgMzMtMzQuNDc1IDUuMjY4YTggOCAwIDAgMCAtNC41MTggMTMuNWwyNS4xOCAyNS44MDgtNS45NTQgMzYuNTM2YTggOCAwIDAgMCAxMS43NiA4LjI4OGwzMC43NC0xNi45OTEgMzAuNzQgMTYuOTkxYTggOCAwIDAgMCAxMS43NjUtOC4yOWwtNS45NTktMzYuNTM3IDI1LjE4LTI1LjgwOGE4IDggMCAwIDAgMS44Ni04LjEyNXptLTQxLjMxMiAyNS42NTFhOCA4IDAgMCAwIC0yLjE3IDYuODc1bDMuOTU4IDI0LjI2Mi0yMC4xOTItMTEuMTYxYTggOCAwIDAgMCAtNy43NCAwbC0yMC4xOTIgMTEuMTYxIDMuOTU4LTI0LjI2MmE4IDggMCAwIDAgLTIuMTctNi44NzVsLTE3LjEyNi0xNy41NTQgMjMuMy0zLjU2MWE4IDggMCAwIDAgNi4wMzQtNC41MDhsMTAuMDY2LTIxLjQ0IDEwLjA2MyAyMS40NGE4IDggMCAwIDAgNi4wMzQgNC41MDhsMjMuMyAzLjU2MXoiLz48cGF0aCBkPSJtMTIwIDQ0MGE4IDggMCAwIDAgMi43OTMgNi4wNzRjMi4zNzkgMi4wMzggNTkuMSA0OS45MjYgMTMzLjIwNyA0OS45MjZzMTMwLjgyOC00Ny44ODggMTMzLjIwNy00OS45MjZhOCA4IDAgMCAwIDIuNzkzLTYuMDc0YzAtNjEuOTE5LTQxLjYtMTE0LjMtOTguMzEyLTEzMC42ODNhNzIgNzIgMCAxIDAgLTc1LjM3NiAwYy01Ni43MTIgMTYuMzgzLTk4LjMxMiA2OC43NjQtOTguMzEyIDEzMC42ODN6bTgwLTE5MmE1NiA1NiAwIDEgMSA1NiA1NiA1Ni4wNjMgNTYuMDYzIDAgMCAxIC01Ni01NnptNTYgNzJhMTIwLjE0OSAxMjAuMTQ5IDAgMCAxIDExOS45NDEgMTE2LjJjLTEyLjA1IDkuMy02MC43NjEgNDMuOC0xMTkuOTQxIDQzLjhzLTEwNy44OTEtMzQuNS0xMTkuOTQxLTQzLjhhMTIwLjE0OSAxMjAuMTQ5IDAgMCAxIDExOS45NDEtMTE2LjJ6Ii8+PC9zdmc+" />
+                    <br>
+                    <span>Average number of votes:</span> {{ review.1 }}<br>
+                    <br>
+                </li>
+                {% endfor %}
+            </ol>
+        </div>
+      </div>
+      <div class ="col-lg-1">
+      </div>
+    </div>
+</section>
 {% endblock %}
+
