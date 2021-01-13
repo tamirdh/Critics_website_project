@@ -20,11 +20,11 @@
             <p class="lead">Found {{ reviews_list |length }} reviews</p>
             <ul>
                 {% for review in reviews_list %}
-                <li id ="resblock">
-                 Movie: {{ review.0 }}<br>review by: {{ review.1 }}<br>review summary: {{ review.2 }}<br>
+                <div id ="resblock">
+                 <span>Movie:</span> {{ review.0 }}<br><span>review by:</span> {{ review.1 }}<br><span>review summary:</span> {{ review.2 }}<br>
                     <a href={{ review.3 }}>Original review</a>
                     <br>
-                </li>
+                </div>
                 {% endfor %}
             </ul>
         </div>
