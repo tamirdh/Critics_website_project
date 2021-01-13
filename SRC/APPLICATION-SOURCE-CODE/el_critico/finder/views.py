@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from django.views.generic import ListView
 from django.db import connection
+from django.core.paginator import Paginator
 
 
 # Create your views here.
@@ -64,7 +65,12 @@ class PopularMoviesUsers(ListView):
             rows = cursor.fetchall()
             if not rows:
                 return render(request, 'no_results.html', {"phrase": "Popular movies"})
-        return render(request, self.template_name, {"reviews_list": rows})
+        length = len(rows)
+        paginator = Paginator(rows, 20)
+        page = request.GET.get('page')
+
+        rows = paginator.get_page(page)
+        return render(request, self.template_name, {"reviews_list": rows, "total_amount": length})
 
 
 # query 3- critics picks

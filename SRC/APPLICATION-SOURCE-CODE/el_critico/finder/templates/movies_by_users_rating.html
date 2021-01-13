@@ -11,7 +11,7 @@
       <div class="col-lg-10 align-items-center">
         <div id="headingGroup" class="text-white text-center d-lg-block mt-5">
             <h1 class="display-3"><span>#</span>Here are the reviews for movies that are popular according to the audience</h1>
-            <p class="lead">Found {{ reviews_list |length }} reviews</p>
+            <p class="lead">Displaying {{ reviews_list |length }} reviews out of {{ total_amount }}</p>
             <ul id="review_ul" >
                 {% for review in reviews_list %}
                 <div id ="resblock" class= "border rounded">
@@ -32,5 +32,5 @@
     </div>
 </section>
 
-{% endblock %}
 
+{% endblock %}
