@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block styling %}
+{% load static %}
+
+{% endblock %}
+
+{% block title %}Choose by genre{% endblock %}
+{% block content %}
+{% load static %}
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-xl justify-content-center navbar-light bg-light">
+        <a id="genres" class="navbar-brand" href="#">Adventure</a>
+        <a id="genres" class="navbar-brand" href="#">Action</a>
+        <a id="genres" class="navbar-brand" href="#">Animation</a>
+        <a id="genres" class="navbar-brand" href="#">Comedy</a>
+        <a id="genres" class="navbar-brand" href="#">Crime</a>
+        <a id="genres" class="navbar-brand" href="#">Documentary</a>
+        <a id="genres" class="navbar-brand" href="#">Drama</a>
+        <a id="genres" class="navbar-brand" href="#">Family</a>
+        <a id="genres" class="navbar-brand" href="#">Fantasy</a>
+        <a id="genres" class="navbar-brand" href="#">History</a>
+        <a id="genres" class="navbar-brand" href="#">Horror</a>
+        <a id="genres" class="navbar-brand" href="#">Music</a>
+        <a id="genres" class="navbar-brand" href="#">Mystery</a>
+        <a id="genres" class="navbar-brand" href="#">Romance</a>
+        <a id="genres" class="navbar-brand" href="#">Science Fiction</a>
+        <a id="genres" class="navbar-brand" href="#">Thriller</a>
+        <a id="genres" class="navbar-brand" href="#">TV Movie</a>
+        <a id="genres" class="navbar-brand" href="#">War</a>
+        <a id="genres" class="navbar-brand" href="#">Western</a>
+    </nav>
+</div>
+
+
+{% block genre %}{% endblock %}
+
+
+{% endblock %}
