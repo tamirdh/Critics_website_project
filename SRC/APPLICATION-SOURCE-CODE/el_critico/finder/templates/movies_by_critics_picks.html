@@ -1,9 +1,5 @@
-{% extends 'base.html' %}
-
-{% block title %}Top Movies{% endblock %}
-{% block content %}
-{% load static %}
-
+{% extends 'genre_choice.html' %}
+{% block genre %}
 Here are the reviews for movies that are recommended by New York Times critics<br>
 Found {{ reviews_list |length }} reviews <br>
 <ul>

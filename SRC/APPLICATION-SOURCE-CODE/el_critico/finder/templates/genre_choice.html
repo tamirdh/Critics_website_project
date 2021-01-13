@@ -9,25 +9,24 @@
 {% load static %}
 <div class="container-fluid">
     <nav class="navbar navbar-expand-xl justify-content-center navbar-light bg-light">
-        <a id="genres" class="navbar-brand" href="#">Adventure</a>
-        <a id="genres" class="navbar-brand" href="#">Action</a>
-        <a id="genres" class="navbar-brand" href="#">Animation</a>
-        <a id="genres" class="navbar-brand" href="#">Comedy</a>
-        <a id="genres" class="navbar-brand" href="#">Crime</a>
-        <a id="genres" class="navbar-brand" href="#">Documentary</a>
-        <a id="genres" class="navbar-brand" href="#">Drama</a>
-        <a id="genres" class="navbar-brand" href="#">Family</a>
-        <a id="genres" class="navbar-brand" href="#">Fantasy</a>
-        <a id="genres" class="navbar-brand" href="#">History</a>
-        <a id="genres" class="navbar-brand" href="#">Horror</a>
-        <a id="genres" class="navbar-brand" href="#">Music</a>
-        <a id="genres" class="navbar-brand" href="#">Mystery</a>
-        <a id="genres" class="navbar-brand" href="#">Romance</a>
-        <a id="genres" class="navbar-brand" href="#">Science Fiction</a>
-        <a id="genres" class="navbar-brand" href="#">Thriller</a>
-        <a id="genres" class="navbar-brand" href="#">TV Movie</a>
-        <a id="genres" class="navbar-brand" href="#">War</a>
-        <a id="genres" class="navbar-brand" href="#">Western</a>
+        <a id="genres" class="navbar-brand" href="{% url 'genre_stats' genre='Adventure' %}">Adventure</a>
+        <a id="genres" class="navbar-brand" href="{% url 'genre_stats' genre='Action' %}">Action</a>
+        <a id="genres" class="navbar-brand" href="{% url 'genre_stats' genre='Animation' %}">Animation</a>
+        <a id="genres" class="navbar-brand" href="{% url 'genre_stats' genre='Comedy' %}">Comedy</a>
+        <a id="genres" class="navbar-brand" href="{% url 'genre_stats' genre='Crime' %}">Crime</a>
+        <a id="genres" class="navbar-brand" href="{% url 'genre_stats' genre='Documentary' %}">Documentary</a>
+        <a id="genres" class="navbar-brand" href="{% url 'genre_stats' genre='Drama' %}">Drama</a>
+        <a id="genres" class="navbar-brand" href="{% url 'genre_stats' genre='Family' %}">Family</a>
+        <a id="genres" class="navbar-brand" href="{% url 'genre_stats' genre='Fantasy' %}">Fantasy</a>
+        <a id="genres" class="navbar-brand" href="{% url 'genre_stats' genre='History' %}">History</a>
+        <a id="genres" class="navbar-brand" href="{% url 'genre_stats' genre='Horror' %}">Horror</a>
+        <a id="genres" class="navbar-brand" href="{% url 'genre_stats' genre='Music' %}">Music</a>
+        <a id="genres" class="navbar-brand" href="{% url 'genre_stats' genre='Mystery' %}">Mystery</a>
+        <a id="genres" class="navbar-brand" href="{% url 'genre_stats' genre='Romance' %}">Romance</a>
+        <a id="genres" class="navbar-brand" href="{% url 'genre_stats' genre='Science Fiction' %}">Science Fiction</a>
+        <a id="genres" class="navbar-brand" href="{% url 'genre_stats' genre='Thriller' %}">Thriller</a>
+        <a id="genres" class="navbar-brand" href="{% url 'genre_stats' genre='War' %}">War</a>
+        <a id="genres" class="navbar-brand" href="{% url 'genre_stats' genre='Western' %}">Western</a>
     </nav>
 </div>
 

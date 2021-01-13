@@ -6,7 +6,7 @@
 
 Here are the reviews for movies that are popular according to the audience<br>
 Found {{ reviews_list |length }} reviews <br>
-<ul>
+<ul id="review_ul" >
 {% for review in reviews_list %}
 <li>
  Movie:{{ review.0 }}<br>Average score: {{ review.1 }}<br>review summary: {{ review.2 }}<br>
@@ -15,5 +15,21 @@ Found {{ reviews_list |length }} reviews <br>
 </li>
     {% endfor %}
 </ul>
+
+<button id="next_btn" type="button" name="button">Next</button>
+
+<script type="text/javascript">
+  /*
+  var lst = {{ reviews_list |tojson }};
+  console.log(lst[0]);
+
+  var index = 0;
+  document.getElementById("next_btn").onclick = function () {
+    var j = 0;
+    while (j < 20 && index < lst.length) {
+      in
+    }
+  }*/
+</script>
 
 {% endblock %}

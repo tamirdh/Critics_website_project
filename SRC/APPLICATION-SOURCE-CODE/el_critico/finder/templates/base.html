@@ -16,8 +16,8 @@
 
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/app.css' %}" >
-    
-    
+
+
     {% block styling %}{% endblock %}
 
     <title>{% block title %}{% endblock %}</title>
@@ -51,7 +51,7 @@
             <a href="{% url 'critic_search' %}" class="nav-link">CRITIC SEARCH</a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">LINK</a>
+            <a href="{% url 'genre_choice' %}" class="nav-link">GENRE STATS</a>
           </li>
           <li class="nav-item">
             <a href="" class="nav-link">LINK</a>

@@ -29,6 +29,12 @@ class SearchByCritic(View):
     def get(self, request, *args, **kwargs):
         return render(request, self.template_name)
 
+class GenreChoice(View):
+    template_name = 'genre_choice.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
 # query 1- reviews by critics
 class ReviewsByCritic(ListView):
     template_name = 'reviews_by_critic.html'

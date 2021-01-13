@@ -10,6 +10,7 @@ urlpatterns = [
     path('critic-pick/', views.PopularMoviesCritics.as_view(), name='finder_critics'),
     path('context/', views.KeyWordReview.as_view(), name='finder_phrase'),    # search by given phrase (context)
     path('critic-pick/filter/<str:critic>/', views.MoviesPicked.as_view(), name="critic_stats"),  # search stats by critic name
-    path('critic-pick/filter/genre/<str:genre>', views.MoviesPickedGenre.as_view()),    # search stats by genere
+    path('genere-stats/', views.GenreChoice.as_view(), name="genre_choice"),
+    path('genre-stats/category/<str:genre>', views.MoviesPickedGenre.as_view(), name="genre_stats"),    # search stats by genere
     path('stats/users', views.GenreUsersStats.as_view(), name='finder_users')
 ]
