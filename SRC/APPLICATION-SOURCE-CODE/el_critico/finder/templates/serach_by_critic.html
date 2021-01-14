@@ -25,7 +25,7 @@
                         <span class="checkmark"></span>
                     </label>
                     <div class="autocomplete">
-                    <input id="myInput" name="term" class="form-control mr-sm-2" type="search" placeholder="Insert critic's name" aria-label="Search">
+                    <input id="myInput" name="term" class="form-control mr-sm-2" type="search" placeholder="Insert critic's name" aria-label="Search" Required>
                     </div>
                     <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3" type="submit">SEARCH</button>
                 </form>
@@ -35,7 +35,7 @@
             </div>
 
             <script>
-              const critics_names = ["Wesley Morris", "Teo Bugbee", "Stephen Holden", "Sean T. Collins", "Scott Tobias", "Robert Daniels", "Rachel Saltz", "Paul Brunick", "Nicole Herrington", "Nicolas Rapold", "Neil Genzlinger", "Nathan Lee", "Natalia Winkelman", "Monica Castillo", "Miriam Bale", "Mike Hale", "Maya Phillips", "Manohla Dargis", "Lovia Gyarkye", "Laura Kern", "Kyle Turner", "Kristen Yoonsoo Kim", "Ken Jaworowski", "Karen Han", "Jon Caramanica", "John Williams", "Jessica Kiang", "Jennifer Szalai", "Jeannette Catsoulis", "Jason Zinoman", "Jason Bailey", "Janet Maslin", "Helen T. Verongos", "Glenn Kenny", "Geoffrey O’brien", "Elisabeth Vincentelli", "Devika Girish", "David DeWitt", "Daniel M. Gold", "Chris Vognar", "Chris Azzopardi", "Candice Frederick", "By A. o. Scott", "By A. o. Scott", "By . A. O. Scott", "Bilge Ebiri", "Bilal Qureshi", "Ben Kenigsberg", "Anita Gates", "Andy Webster", "Amy Nicholson", "Aisha Harris", "A.o. Scott", "A. o. Scott", "A. O. Scott"];
+              const critics_names = ["Wesley Morris", "Teo Bugbee", "Stephen Holden", "Sean T. Collins", "Scott Tobias", "Robert Daniels", "Rachel Saltz", "Paul Brunick", "Nicole Herrington", "Nicolas Rapold", "Neil Genzlinger", "Nathan Lee", "Natalia Winkelman", "Monica Castillo", "Miriam Bale", "Mike Hale", "Maya Phillips", "Manohla Dargis", "Lovia Gyarkye", "Laura Kern", "Kyle Turner", "Kristen Yoonsoo Kim", "Ken Jaworowski", "Karen Han", "Jon Caramanica", "John Williams", "Jessica Kiang", "Jennifer Szalai", "Jeannette Catsoulis", "Jason Zinoman", "Jason Bailey", "Janet Maslin", "Helen T. Verongos", "Glenn Kenny", "Geoffrey O’brien", "Elisabeth Vincentelli", "Devika Girish", "David DeWitt", "Daniel M. Gold", "Chris Vognar", "Chris Azzopardi", "Candice Frederick", "By . A. O. Scott", "Bilge Ebiri", "Bilal Qureshi", "Ben Kenigsberg", "Anita Gates", "Andy Webster", "Amy Nicholson", "Aisha Harris", "A.o. Scott", "A. o. Scott", "A. O. Scott"];
 
               function autocomplete(inp, arr) {
                 var currentFocus;
