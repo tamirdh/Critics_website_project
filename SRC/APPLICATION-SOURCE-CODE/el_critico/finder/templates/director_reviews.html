@@ -49,18 +49,18 @@
                             </button>
                           </h5>
                         </div>
-                        
+
                         <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                           <div class="card-body">
-                            <span>Director's birthday:</span> {{ review.1 }}
+                            <span>Director's birthday:</span> {% if review.1 != None %} {{ review.1 }} {% else %} Unknown {% endif %} 
                             <span>Director's biography:</span> {{ review.2 }}
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    
-                    <span>Movie:</span> {{ review.3 }}<br> 
+
+                    <span>Movie:</span> {{ review.3 }}<br>
                     <span>Review summary:</span> {{ review.5 }}<br>
                     <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3"><a class="text-white" href={{ review.4 }}>Original review</a></button>
                     <br>
