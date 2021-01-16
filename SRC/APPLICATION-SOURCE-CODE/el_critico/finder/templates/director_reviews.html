@@ -16,7 +16,7 @@
       </div>
       <div class="col-lg-10 align-items-center">
         <div id="headingGroup" class="text-white text-center d-lg-block mt-5">
-            <h1 class="display-3"><span>#"</span>{{director}}<span>"'s</span> movies reviews</h1>
+            <h1 class="display-3"><span>#</span>Reviews of movies directed by <span>"</span>{{director}}<span>"</span></h1>
             <p class="lead">Displaying {{ reviews_list.start_index }} - {{ reviews_list.end_index }} reviews out of {{ reviews_list.paginator.count }}</p>
             <div class="dj_pang">
               {% if reviews_list.has_previous %}
@@ -39,9 +39,9 @@
                 {% for review in reviews_list %}
                 <div id ="resblock" class= "border rounded">
                     <span>Director:</span> {{ review.0 }} <br>
-                    <span>Director's birthday:</span> {{ review.1 }}
-                    <span>Director's biography:</span> {{ review.2 }}
-                    <span>Movie:</span> {{ review.3 }}<br> 
+                    <span>Director's birthday:</span> {{ review.1 }}<br>
+                    <span>Director's biography:</span> {{ review.2 }}<br>
+                    <span>Movie:</span> {{ review.3 }}<br>
                     <span>Review summary:</span> {{ review.5 }}<br>
                     <button id = "search_btn" class="btn btn-outline-success my-2 my-sm-3"><a class="text-white" href={{ review.4 }}>Original review</a></button>
                     <br>

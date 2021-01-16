@@ -31,6 +31,13 @@ class SearchByCritic(View):
         return render(request, self.template_name)
 
 
+class SearchByPerson(View):
+    template_name = 'search_by_person.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
 class GenreChoice(View):
     template_name = 'genre_choice.html'
 
@@ -174,37 +181,39 @@ class GenreUsersStats(ListView):
 
 # query 8 actor reviews
 class ActorStats(ListView):
-    template_name = ""
-    query = "SELECT Person.name, Movie.title, Review.link, Review.summary, Actor.popularity FROM Review JOIN Movie on Movie.ID = Review.movie_id JOIN Appearances on Movie.ID = Appearances.movie_id JOIN Actor on Appearances.actor_id = Actor.ID Join Person on Person.ID = Actor.ID WHERE Person.name LIKE %s"
+    template_name = "actor_reviews.html"
+    query = "SELECT Person.name, Movie.title, Review.link, Review.summary, Actor.popularity FROM Review JOIN Movie on Movie.ID = Review.movie_id JOIN Appearances on Movie.ID = Appearances.movie_id JOIN Actor on Appearances.actor_id = Actor.ID Join Person on Person.ID = Actor.ID WHERE Person.name LIKE %s ORDER BY Actor.popularity DESC"
 
     def get(self, request, *args, **kwargs):
-        actor = request.GET.get('actor')
+        actor_name = kwargs["actor"]
         with connection.cursor() as cursor:
-            cursor.execute(self.query, (actor,))
+            new_actor_name = "%{}%".format(actor_name)
+            cursor.execute(self.query, (new_actor_name,))
             rows = cursor.fetchall()
             if not rows:
-                return render(request, 'no_results.html', {"reviews_list": rows})
+                return render(request, 'no_results.html', {"reviews_list": rows ,"phrase": actor_name})
 
         paginator = Paginator(rows, 20)
         page = request.GET.get('page')
         rows = paginator.get_page(page)
-        return render(request, self.template_name, {"reviews_list": rows})
+        return render(request, self.template_name, {"reviews_list": rows, "actor": actor_name})
 
 
 # query 9 director reviews
 class DirectorReviews(ListView):
-    template_name = ""
+    template_name = "director_reviews.html"
     query = "SELECT Person.name, Director.birthday, Director.bio, Movie.title, Review.link, Review.summary from Director JOIN Movie on Movie.director_id = Director.ID Join Review on Movie.ID = Review.movie_id Join Person on Person.ID = Director.ID WHERE Person.name LIKE %s"
 
     def get(self, request, *args, **kwargs):
-        director = request.GET.get('director')
+        director_name = kwargs["director"]
         with connection.cursor() as cursor:
-            cursor.execute(self.query, (director,))
+            new_director_name = "%{}%".format(director_name)
+            cursor.execute(self.query, (new_director_name,))
             rows = cursor.fetchall()
             if not rows:
-                return render(request, 'no_results.html', {"reviews_list": rows})
+                return render(request, 'no_results.html', {"reviews_list": rows ,"phrase": director_name})
 
         paginator = Paginator(rows, 20)
         page = request.GET.get('page')
         rows = paginator.get_page(page)
-        return render(request, self.template_name, {"reviews_list": rows})
+        return render(request, self.template_name, {"reviews_list": rows, "director": director_name})

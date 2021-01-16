@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'obv@&u5i2e%6*v-au+f#k6$uo$kb$!ab8b%r@+8zda+lx=!h#@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '*']
 
@@ -78,8 +78,8 @@ DATABASES = {
         'NAME': 'DbMysql16',
         'USER': 'DbMysql16',
         'PASSWORD': 'DbMysql16',
-        'HOST': 'mysqlsrv1.cs.tau.ac.il',
-        'PORT': 3306
+        'HOST': '127.0.0.1',
+        'PORT': 3305
     }
 }
 
