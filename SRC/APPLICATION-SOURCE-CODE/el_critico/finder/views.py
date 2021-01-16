@@ -131,8 +131,9 @@ class KeyWordReview(ListView):
 # query 5- pick statistics by critic
 class MoviesPicked(ListView):
     template_name = 'movies_picked_by_critic.html'
-    query = "SELECT Person.name, count(*), SUM(critics_pick), bio, image from Person join Review on Person.ID = Review.critic_id" \
-            "JOIN Critic on Critid.ID = Person.ID where Person.name=%s group by critic_id "
+    query = "SELECT name, amount, picks, bio, image from ( SELECT Person.name, COUNT(*) as amount, SUM(critics_pick)" \
+            " as picks, Person.ID FROM Person JOIN Review ON Person.ID = Review.critic_id JOIN Critic ON Critic.ID" \
+            " = Person.ID WHERE Person.name = %s GROUP BY critic_id) as T JOIN Critic on T.ID = Critic.ID"
 
     def get(self, request, *args, **kwargs):
         with connection.cursor() as cursor:
