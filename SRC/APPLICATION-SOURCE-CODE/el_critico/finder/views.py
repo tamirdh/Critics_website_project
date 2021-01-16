@@ -153,7 +153,6 @@ class MoviesPickedGenre(ListView):
             "JOIN Genre on Genre.ID = Movie.category_id WHERE critics_pick = 1 AND category_name=%s"
 
     def get(self, request, *args, **kwargs):
-        raise ValueError("")
         category_name = kwargs["genre"]
         with connection.cursor() as cursor:
             cursor.execute(self.query, (category_name,))
