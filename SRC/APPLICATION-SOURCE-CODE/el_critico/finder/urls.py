@@ -13,7 +13,7 @@ urlpatterns = [
     path('genere-stats/', views.GenreChoice.as_view(), name="genre_choice"),
     path('genre-stats/category/<str:genre>', views.MoviesPickedGenre.as_view(), name="genre_stats"),    # search stats by genere
     path('stats/users', views.GenreUsersStats.as_view(), name='finder_users'),
-    path('stats/actor', views.ActorStats.as_view()),
-    path('stats/director', views.DirectorReviews.as_view())
-
+    path('person/', views.SearchByPerson.as_view(), name="person_search"),
+    path('person/actor/<str:actor>', views.ActorStats.as_view(), name="finder_actor"),
+    path('person/director/<str:director>', views.DirectorReviews.as_view(), name="finder_director")
 ]
