@@ -124,8 +124,8 @@ class KeyWordReview(ListView):
 # query 5- pick statistics by critic
 class MoviesPicked(ListView):
     template_name = 'movies_picked_by_critic.html'
-    query = "SELECT Person.name, count(*), SUM(critics_pick) from Person join Review on Person.ID = Review.critic_id" \
-            " where Person.name=%s group by critic_id "
+    query = "SELECT Person.name, count(*), SUM(critics_pick), bio, image from Person join Review on Person.ID = Review.critic_id" \
+            "JOIN Critic on Critid.ID = Person.ID where Person.name=%s group by critic_id "
 
     def get(self, request, *args, **kwargs):
         with connection.cursor() as cursor:
@@ -134,7 +134,8 @@ class MoviesPicked(ListView):
             row = cursor.fetchone()
             if not row:
                 return render(request, 'no_results.html', {"phrase": critic})
-        return render(request, self.template_name, {"critic_name": row[0], "count": row[2], "total": row[1]})
+        return render(request, self.template_name,
+                      {"critic_name": row[0], "count": row[2], "total": row[1], "bio": row[3], "image": row[4]})
 
 
 # query 6 picks by genres
@@ -144,6 +145,7 @@ class MoviesPickedGenre(ListView):
             "JOIN Genre on Genre.ID = Movie.category_id WHERE critics_pick = 1 AND category_name=%s"
 
     def get(self, request, *args, **kwargs):
+        raise ValueError("")
         category_name = kwargs["genre"]
         with connection.cursor() as cursor:
             cursor.execute(self.query, (category_name,))
@@ -167,4 +169,42 @@ class GenreUsersStats(ListView):
             rows = cursor.fetchall()
             if not rows:
                 return render(request, 'no_results.html', {"phrase": "User stats"})
+        return render(request, self.template_name, {"reviews_list": rows})
+
+
+# query 8 actor reviews
+class ActorStats(ListView):
+    template_name = ""
+    query = "SELECT Person.name, Movie.title, Review.link, Review.summary, Actor.popularity FROM Review JOIN Movie on Movie.ID = Review.movie_id JOIN Appearances on Movie.ID = Appearances.movie_id JOIN Actor on Appearances.actor_id = Actor.ID Join Person on Person.ID = Actor.ID WHERE Person.name LIKE %s"
+
+    def get(self, request, *args, **kwargs):
+        actor = request.GET.get('actor')
+        with connection.cursor() as cursor:
+            cursor.execute(self.query, (actor,))
+            rows = cursor.fetchall()
+            if not rows:
+                return render(request, 'no_results.html', {"reviews_list": rows})
+
+        paginator = Paginator(rows, 20)
+        page = request.GET.get('page')
+        rows = paginator.get_page(page)
+        return render(request, self.template_name, {"reviews_list": rows})
+
+
+# query 9 director reviews
+class DirectorReviews(ListView):
+    template_name = ""
+    query = "SELECT Person.name, Director.birthday, Director.bio, Movie.title, Review.link, Review.summary from Director JOIN Movie on Movie.director_id = Director.ID Join Review on Movie.ID = Review.movie_id Join Person on Person.ID = Director.ID WHERE Person.name LIKE %s"
+
+    def get(self, request, *args, **kwargs):
+        director = request.GET.get('director')
+        with connection.cursor() as cursor:
+            cursor.execute(self.query, (director,))
+            rows = cursor.fetchall()
+            if not rows:
+                return render(request, 'no_results.html', {"reviews_list": rows})
+
+        paginator = Paginator(rows, 20)
+        page = request.GET.get('page')
+        rows = paginator.get_page(page)
         return render(request, self.template_name, {"reviews_list": rows})
