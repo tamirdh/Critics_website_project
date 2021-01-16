@@ -40,17 +40,19 @@
                 <div id ="resblock" class= "border rounded">
                     <span>Director:</span> {{ review.0 }} <br>
 
-                    <div id="accordion">
-                      <div class="card">
+                    <div id="accordion{{ forloop.counter }}" style="border: 0;">
+                      <div class="card" style="border: 0;">
                         <div class="card-header" id="headingOne{{ forloop.counter }}">
                           <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne{{ forloop.counter }}" aria-expanded="false" aria-controls="collapseOne{{ forloop.counter }}">
+                                <img style="width: 2%; height: auto;" src="data:image/svg+xml;base64,PHN2ZyBpZD0iR3JhZGllbnQiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgd2lkdGg9IjUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMjU2IiB4Mj0iMjU2IiB5MT0iNDk2IiB5Mj0iMTYiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzEyYzJlOSIvPjxzdG9wIG9mZnNldD0iLjUiIHN0b3AtY29sb3I9IiNjNDcxZWQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNjRmNTkiLz48L2xpbmVhckdyYWRpZW50PjxwYXRoIGQ9Im0yNTYgNDk2YTMxLjggMzEuOCAwIDAgMSAtMjIuNjI5LTkuMzcybC0xNDQuMDEyLTE0NGEzMiAzMiAwIDAgMSA0NS4yNTgtNDUuMjU1bDg5LjM4MyA4OS4zNzJ2LTMzOC43NDVhMzIgMzIgMCAwIDEgNjQgMHYzMzguNzQ1bDg5LjM4LTg5LjM3MmEzMiAzMiAwIDEgMSA0NS4yNTggNDUuMjU0bC0xNDQuMDEyIDE0NGEzMS44IDMxLjggMCAwIDEgLTIyLjYyNiA5LjM3M3ptLTE0NC4wMTItMTkxLjk5MmExNS45OTMgMTUuOTkzIDAgMCAwIC0xMS4zMTUgMjcuMzA2bDE0NC4wMTIgMTQ0YTE2IDE2IDAgMCAwIDIyLjYzIDBsMTQ0LjAxMi0xNDRhMTYgMTYgMCAxIDAgLTIyLjYzLTIyLjYyN2wtMTAzLjAzOCAxMDMuMDI4YTggOCAwIDAgMSAtMTMuNjU5LTUuNjU2di0zNTguMDU5YTE2IDE2IDAgMCAwIC0zMiAwdjM1OC4wNTlhOCA4IDAgMCAxIC0xMy42NTggNS42NTZsLTEwMy4wNDItMTAzLjAyOWExNS45NTcgMTUuOTU3IDAgMCAwIC0xMS4zMTItNC42Nzh6IiBmaWxsPSJ1cmwoI2xpbmVhci1ncmFkaWVudCkiLz48L3N2Zz4=" />
                                 <span>Director's information</span>
+                                <img style="width: 2%; height: auto;" src="data:image/svg+xml;base64,PHN2ZyBpZD0iR3JhZGllbnQiIGhlaWdodD0iNTEyIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiIgd2lkdGg9IjUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+PGxpbmVhckdyYWRpZW50IGlkPSJsaW5lYXItZ3JhZGllbnQiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIiB4MT0iMjU2IiB4Mj0iMjU2IiB5MT0iNDk2IiB5Mj0iMTYiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzEyYzJlOSIvPjxzdG9wIG9mZnNldD0iLjUiIHN0b3AtY29sb3I9IiNjNDcxZWQiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNmNjRmNTkiLz48L2xpbmVhckdyYWRpZW50PjxwYXRoIGQ9Im0yNTYgNDk2YTMxLjggMzEuOCAwIDAgMSAtMjIuNjI5LTkuMzcybC0xNDQuMDEyLTE0NGEzMiAzMiAwIDAgMSA0NS4yNTgtNDUuMjU1bDg5LjM4MyA4OS4zNzJ2LTMzOC43NDVhMzIgMzIgMCAwIDEgNjQgMHYzMzguNzQ1bDg5LjM4LTg5LjM3MmEzMiAzMiAwIDEgMSA0NS4yNTggNDUuMjU0bC0xNDQuMDEyIDE0NGEzMS44IDMxLjggMCAwIDEgLTIyLjYyNiA5LjM3M3ptLTE0NC4wMTItMTkxLjk5MmExNS45OTMgMTUuOTkzIDAgMCAwIC0xMS4zMTUgMjcuMzA2bDE0NC4wMTIgMTQ0YTE2IDE2IDAgMCAwIDIyLjYzIDBsMTQ0LjAxMi0xNDRhMTYgMTYgMCAxIDAgLTIyLjYzLTIyLjYyN2wtMTAzLjAzOCAxMDMuMDI4YTggOCAwIDAgMSAtMTMuNjU5LTUuNjU2di0zNTguMDU5YTE2IDE2IDAgMCAwIC0zMiAwdjM1OC4wNTlhOCA4IDAgMCAxIC0xMy42NTggNS42NTZsLTEwMy4wNDItMTAzLjAyOWExNS45NTcgMTUuOTU3IDAgMCAwIC0xMS4zMTItNC42Nzh6IiBmaWxsPSJ1cmwoI2xpbmVhci1ncmFkaWVudCkiLz48L3N2Zz4=" />
                             </button>
                           </h5>
                         </div>
 
-                        <div id="collapseOne{{ forloop.counter }}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div id="collapseOne{{ forloop.counter }}" class="collapse" aria-labelledby="headingOne{{ forloop.counter }}" data-parent="#accordion{{ forloop.counter }}">
                           <div class="card-body">
                             <span>Director's birthday:</span> {% if review.1 != None %} {{ review.1 }} {% else %} Unknown {% endif %}
                             <span>Director's biography:</span> {{ review.2 }}

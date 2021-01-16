@@ -110,8 +110,10 @@ body {
     background-color: #5acac1;
 }
 .card-header {
-    background: #2cafa4;
+    background: #1b7569;
+    border: 0;
 }
 .card-body {
-    background-color: #5acac1;
+    background-color: #08584d;
+    border: 0;
 }

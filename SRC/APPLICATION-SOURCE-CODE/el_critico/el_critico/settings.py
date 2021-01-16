@@ -78,8 +78,8 @@ DATABASES = {
         'NAME': 'DbMysql16',
         'USER': 'DbMysql16',
         'PASSWORD': 'DbMysql16',
-        'HOST': '127.0.0.1',
-        'PORT': 3305
+        'HOST': 'mysqlsrv1.cs.tau.ac.il',
+        'PORT': 3306
     }
 }
 
