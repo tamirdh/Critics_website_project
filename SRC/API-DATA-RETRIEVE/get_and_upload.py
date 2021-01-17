@@ -8,7 +8,7 @@ def parse_ny_tables():
     ny_api = nyApi()
     try:
         connection = connect_to_db()
-        # insert_critics(ny_api, connection)
+        insert_critics(ny_api, connection)
         insert_reviews(connection, ny_api)
     except Exception:
         print("Falied")
@@ -119,8 +119,8 @@ def parse_tmdb_tables():
     tmdb = tmdbApi()
     connection = connect_to_db()
     try:
-        # insert_genres(tmdb, connection)
-        # insert_popular_movies(tmdb, connection)
+        insert_genres(tmdb, connection)
+        insert_popular_movies(tmdb, connection)
         insert_actors(connection, tmdb)
     except Exception:
         connection.close()
@@ -351,4 +351,4 @@ def connect_to_db():
 
 if __name__ == '__main__':
     parse_tmdb_tables()
-    # parse_ny_tables()
+    parse_ny_tables()
